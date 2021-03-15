@@ -1,0 +1,138 @@
+
+.main-auth-container {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 50px 13% 0 10%;
+}
+
+.auth-container {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.last-auth-container {
+  float: right;
+  text-align: right;
+}
+
+.auth__label {
+	border-bottom: 1px solid;
+    margin-right: 20px;
+	font-size: 1.25em;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+
+.auth__input {
+	background: none;
+	border: none;
+  font-size: 0.7em;
+	width: 100%;
+}
+
+.auth__input:focus{
+	outline: none;
+}
+
+.label-text{
+	font-size: 0.5em;
+	font-weight: bold;
+	padding-left: 0.5em;
+	text-transform: uppercase;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+
+.inscription {
+  font-size: 0.7em;
+}
+
+#sing__up__btn {
+  width: 150px;
+}
+
+#sing__up__btn:active {
+  transform: scale(0.95);
+}
+
+#close__btn {
+  margin: auto 5px auto 20px;
+  cursor: pointer;
+  color: #383838;
+}
+
+#checkbox__input  {display: none;}
+
+#checkbox__input + #checkbox__span:before {
+  content: "\2714";
+  color: transparent;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: 900;
+  line-height: 17px;
+  margin: -5px 5px 0 0;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  vertical-align: middle;
+  transition: color ease .3s;
+}
+
+#checkbox__input:checked + #checkbox__span:before {
+  color: #383838;
+  border-color: #383838;
+}
+
+#forgot_password_link {
+  color: #09173f;
+  font-weight: bold;
+}
+
+.label__password {
+    position: relative;
+}
+
+#show_pass {
+    width: 25px;
+    position: absolute;
+    right: 0;
+    top: 55%;
+}
+
+@media (max-width: 1199px) {
+
+}
+@media (max-width: 1023px) {
+
+}
+@media (max-width: 899px) {
+  .main-auth-container {
+    flex-direction: column;
+  }
+}
+@media (max-width: 649px) {
+
+}
+@media (max-width: 549px) {
+  .main-auth-container {
+    margin: auto 10%;
+  }
+}
+@media (max-width: 349px) {
+  .main-auth-container {
+    width: 90%;
+  }
+  #sing__up__btn {
+		width: 100px;
+	}
+  #close__btn {
+    font-size: 14px;
+  }
+}
+@media (max-width: 219px) {
+
+}
