@@ -14,7 +14,7 @@
 	<artifactId>airnavigation.tradeunion</artifactId>
 	<version>1.0.0-RELEASE</version>
 	<packaging>war</packaging>
-	<name>airnavigation tradeunion web resource</name>
+	<name>airnavigation</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
 	<developers>
@@ -41,7 +41,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -258,8 +258,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>8</source>
-					<target>8</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 
