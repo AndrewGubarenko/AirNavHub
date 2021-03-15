@@ -10,7 +10,7 @@ let store;
 let startUrl;
 
 if(process.env.NODE_ENV === "production") {
-	startUrl = "./";
+	startUrl = "https://airnavigation.herokuapp.com/";
 	store = createStore(mainReducer);
 }
 
