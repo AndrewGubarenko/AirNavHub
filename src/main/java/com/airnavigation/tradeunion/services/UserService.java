@@ -57,7 +57,7 @@ public class UserService implements UserServiceInterface {
         String response;
         Optional<User> userForUpdateOpt = userRepository.findById(id);
 
-        if(userForUpdateOpt.isEmpty()) {
+        if(!userForUpdateOpt.isPresent()) {
             response = "Користувача не було знайдено";
             LOGGER.warn(response);
             throw new NoSuchElementException(response);
@@ -103,7 +103,7 @@ public class UserService implements UserServiceInterface {
     @PostAuthorize("returnObject.username == authentication.principal.username")
     public User getUser(long id) {
         Optional<User> foundUserOpt = userRepository.findById(id);
-        if(foundUserOpt.isEmpty()) {
+        if(!foundUserOpt.isPresent()) {
             LOGGER.warn("METHOD GET_USER: User with id=" + id + " has been not found!");
             throw new NoSuchElementException("Користувача не було знайдено!");
         }

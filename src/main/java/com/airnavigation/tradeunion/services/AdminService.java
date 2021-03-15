@@ -201,7 +201,7 @@ public class AdminService implements AdminServiceInterface {
     @Transactional
     public User getUser(long id) {
         Optional<User> foundUserOpt = adminRepository.findById(id);
-        if(foundUserOpt.isEmpty()) {
+        if(!foundUserOpt.isPresent()) {
             LOGGER.warn("METHOD GET: User with id=" + id + " has been not found!");
             throw new NoSuchElementException("Такого користувача в базі не існує!");
         }
@@ -230,7 +230,7 @@ public class AdminService implements AdminServiceInterface {
             LOGGER.warn("METHOD UPDATE: The firstName or lastName field , or both are empty!");
             throw new EmptyDataFieldsException("Поля first name або last name, або обидва є порожніми!");
         }
-        if(userForUpdateOpt.isEmpty()) {
+        if(!userForUpdateOpt.isPresent()) {
             LOGGER.warn("METHOD UPDATE: User with username " + updatedUser.getUsername() + " has been not found");
             throw new NoSuchElementException("Такого користувача не знайдено!");
         }
@@ -309,7 +309,7 @@ public class AdminService implements AdminServiceInterface {
     public String deleteUser(long id) {
         Optional<User> userForDeleteOpt = adminRepository.findById(id);
         StringBuilder response = new StringBuilder();
-        if(userForDeleteOpt.isEmpty()) {
+        if(!userForDeleteOpt.isPresent()) {
             LOGGER.warn(response.append("METHOD DELETE: User with id: ")
                                 .append(id)
                                 .append(" wasn't found"));
