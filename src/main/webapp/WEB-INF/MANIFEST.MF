@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Start-Class: com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication
+Main-Class: org.springframework.boot.loader.JarLauncher
