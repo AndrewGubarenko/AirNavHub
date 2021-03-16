@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Start-Class: com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication
-Main-Class: com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication
