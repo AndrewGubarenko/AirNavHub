@@ -80,8 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/feedback/{\\d+}").hasRole(Role.USER.name())
                 .antMatchers(HttpMethod.POST, "/feedback/{\\d+}").authenticated()
 
-                //TODO: Repair this before production
-                .antMatchers("/css/**", "/js/**", "/index*", "/json/**", "/*.ico", "/images/**", "/h2/**", "/console/**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/index*", "/json/**", "/*.ico", "/images/**", "/public/**", "/static/**", "/console/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/main").permitAll()
                 .antMatchers(HttpMethod.PUT, "/password").permitAll()
             .and()
