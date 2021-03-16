@@ -1,3 +1,4 @@
+/*
 package com.airnavigation.tradeunion.configs;
 
 import com.airnavigation.tradeunion.Repositories.AdminRepository;
@@ -76,3 +77,4 @@ class InitAdminAccess {
         LOGGER.info("METHOD CREATE: User with username: " + user.getUsername() + " and access level:" + Role.ADMINISTRATOR.name() + " was created");
     }
 }
+*/
