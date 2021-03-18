@@ -24,7 +24,6 @@ public class EmailServiceImpl {
         this.emailSender = emailSender;
     }
 
-    //TODO: beatify the mail
     public void sendMimeMessage(String to, String subject, String from, String text, List<FeedbackFile> files) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);

@@ -14,7 +14,7 @@
 	<artifactId>airnavigation.tradeunion</artifactId>
 	<version>1.0.0-RELEASE</version>
 	<packaging>war</packaging>
-	<name>airnavigation</name>
+	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
 	<developers>
@@ -41,7 +41,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
 	</properties>
@@ -84,7 +84,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!--<dependency>
+<!--		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -158,14 +158,22 @@
 	<build>
 		<plugins>
 
-<!--			<plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
-			</plugin>-->
+			</plugin>
 
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
@@ -248,14 +256,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<mainClass>${start-class}</mainClass>
-				</configuration>
 			</plugin>
 
 		</plugins>
