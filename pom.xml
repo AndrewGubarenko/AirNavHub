@@ -107,17 +107,23 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<version>9.0.38</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.tomcat.maven</groupId>
 			<artifactId>tomcat7-maven-plugin</artifactId>
 			<version>2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>11.0.1</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
