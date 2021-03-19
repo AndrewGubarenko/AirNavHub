@@ -41,10 +41,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>16</java.version>
+		<java.version>14</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
-		<tomcat.version>9.0.33</tomcat.version>
+		<tomcat.version>9.0.44</tomcat.version>
 	</properties>
 
 	<dependencies>
