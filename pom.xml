@@ -44,6 +44,7 @@
 		<java.version>8</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
+		<tomcat.version>10.0.4</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -63,11 +64,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-<!--		<dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.passay</groupId>
 			<artifactId>passay</artifactId>
@@ -91,22 +92,22 @@
 			<version>42.2.19</version>
 		</dependency>
 
-<!--		<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!--<dependency>
+		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
