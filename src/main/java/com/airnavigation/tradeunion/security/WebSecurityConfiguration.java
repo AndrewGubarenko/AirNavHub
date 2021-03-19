@@ -61,8 +61,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                /*.requiresChannel()
-            .and()*/
+                .requiresChannel()
+            .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/administrator/**").hasRole(Role.ADMINISTRATOR.name())
                 .antMatchers(HttpMethod.GET, "/administrator/**").authenticated()
