@@ -44,7 +44,7 @@
 		<java.version>8</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
-		<tomcat.version>7.0.59</tomcat.version>
+		<tomcat.version>8.5.23</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -92,10 +92,10 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -127,11 +127,11 @@
 			</exclusions>
 		</dependency>-->
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.github.eirslett</groupId>
 			<artifactId>frontend-maven-plugin</artifactId>
 			<version>1.6</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>com.heroku</groupId>
@@ -160,7 +160,7 @@
 				</configuration>
 			</plugin>-->
 
-			<plugin>
+			<!--<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.6</version>
@@ -217,7 +217,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
