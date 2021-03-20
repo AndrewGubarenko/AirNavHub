@@ -13,7 +13,7 @@
 	<groupId>com.airnavigation.tradeunion</groupId>
 	<artifactId>airnavigation.tradeunion</artifactId>
 	<version>1.0.0-RELEASE</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
@@ -164,13 +164,13 @@
 	<build>
 		<plugins>
 
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
