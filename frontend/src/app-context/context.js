@@ -10,12 +10,12 @@ let store;
 let startUrl;
 
 if(process.env.NODE_ENV === "production") {
-	startUrl = "/airnavigation/";
+	startUrl = "/";
 	store = createStore(mainReducer);
 }
 
 if(process.env.NODE_ENV === "development") {
-	startUrl = "http://localhost:8080/airnavigation/";
+	startUrl = "http://localhost:8080/";
 	store = createStore(mainReducer,
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
