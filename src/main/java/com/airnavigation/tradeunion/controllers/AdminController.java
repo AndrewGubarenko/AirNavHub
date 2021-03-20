@@ -15,10 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Andrii Hubarenko
@@ -129,7 +126,7 @@ public class AdminController {
 
     @PutMapping(path = "/user/{id}")
     @SuppressWarnings("Duplicates")
-    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User user) {
         String decodedUsername = cryptographer.decode(user.getUsername());
         user.setUsername(decodedUsername);
         User response = adminService.updateUser(id, user);
@@ -140,7 +137,7 @@ public class AdminController {
     }
 
     @DeleteMapping(path = "/user/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable long id) {
+    public ResponseEntity<String> deleteUser(@PathVariable UUID id) {
         String response = adminService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -162,19 +159,19 @@ public class AdminController {
     }
 
     @GetMapping(path = "/file/{id}")
-    public ResponseEntity<File> getSingleFile(@PathVariable long id) {
+    public ResponseEntity<File> getSingleFile(@PathVariable UUID id) {
         File response = fileService.getSingleFile(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping(path = "/file/{id}")
-    public ResponseEntity<File> updateFile(@RequestBody File file, @PathVariable long id) {
+    public ResponseEntity<File> updateFile(@RequestBody File file, @PathVariable UUID id) {
         File response = fileService.changeFile(file, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping(path = "/file/{id}")
-    public ResponseEntity<String> deleteFile(@PathVariable long id) {
+    public ResponseEntity<String> deleteFile(@PathVariable UUID id) {
         String response = fileService.deleteFile(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -190,7 +187,7 @@ public class AdminController {
     }
 
     @PutMapping(path = "/category/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable long id, @RequestBody String categoryName) {
+    public ResponseEntity<Category> updateCategory(@PathVariable UUID id, @RequestBody String categoryName) {
         Category response = fileService.updateCategoryName(categoryName, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -224,19 +221,19 @@ public class AdminController {
     }
 
     @GetMapping(path = "/news/{id}")
-    public ResponseEntity<News> getSingleNews(@PathVariable long id) {
+    public ResponseEntity<News> getSingleNews(@PathVariable UUID id) {
         News response = newsService.getSingleNews(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping(path = "/news/{id}")
-    public ResponseEntity<News> updateNews(@RequestBody News news, @PathVariable long id) {
+    public ResponseEntity<News> updateNews(@RequestBody News news, @PathVariable UUID id) {
         News response = newsService.changeNews(news, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping(path = "/news/{id}")
-    public ResponseEntity<String> deleteNews(@PathVariable long id) {
+    public ResponseEntity<String> deleteNews(@PathVariable UUID id) {
         String response = newsService.deleteNews(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
@@ -24,7 +25,7 @@ public class Questionnaire {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    long id;
+    UUID id;
     @Column(name = "name_ukrainian")
     String nameUkrainian;
     @Column(name = "name_english")

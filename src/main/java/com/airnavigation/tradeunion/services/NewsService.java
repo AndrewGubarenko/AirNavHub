@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class NewsService {
@@ -38,7 +39,7 @@ public class NewsService {
     }
 
     @Transactional
-    public News getSingleNews(long id) {
+    public News getSingleNews(UUID id) {
         Optional<News> foundNewsOpt = newsRepository.findById(id);
         if(foundNewsOpt.isPresent()) {
             return foundNewsOpt.get();
@@ -50,7 +51,7 @@ public class NewsService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public News changeNews(News updatedNews, long id) {
+    public News changeNews(News updatedNews, UUID id) {
         Optional<News> newsForUpdateOpt = newsRepository.findById(id);
         if (newsForUpdateOpt.isPresent()) {
             News newsForUpdate = newsForUpdateOpt.get();
@@ -70,7 +71,7 @@ public class NewsService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public String deleteNews(long id) {
+    public String deleteNews(UUID id) {
         newsRepository.deleteById(id);
         return "Новина успішно видалена";
     }

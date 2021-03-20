@@ -4,11 +4,12 @@ import com.airnavigation.tradeunion.domain.News;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for operations with News objects
  */
-public interface NewsRepository extends CrudRepository<News, Long> {
+public interface NewsRepository extends CrudRepository<News, UUID> {
     List<News> findAll();
 }

@@ -6,13 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for operations with categories in data base
  */
 @Repository
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+public interface CategoryRepository extends CrudRepository<Category, UUID> {
     Optional<Category> findByName(String name);
     ArrayList<Category> findAll();
 }

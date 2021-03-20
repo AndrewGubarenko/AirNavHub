@@ -40,7 +40,7 @@ public class FileService {
     }
 
     @Transactional
-    public File getSingleFile(long id) {
+    public File getSingleFile(UUID id) {
         Optional<File> foundFileOpt = filesRepository.findById(id);
         if (foundFileOpt.isPresent()) {
             return foundFileOpt.get();
@@ -56,7 +56,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public File changeFile(File updatedFile, long id) {
+    public File changeFile(File updatedFile, UUID id) {
         Optional<File> fileForUpdateOpt = filesRepository.findById(id);
         if (fileForUpdateOpt.isPresent()) {
             File fileForUpdate = fileForUpdateOpt.get();
@@ -78,7 +78,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public String deleteFile(long id) {
+    public String deleteFile(UUID id) {
         Optional<File> fileForRemoveOpt = filesRepository.findById(id);
         if(fileForRemoveOpt.isPresent()) {
             File fileForRemove = fileForRemoveOpt.get();
@@ -119,7 +119,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public Category updateCategoryName(String newCatName, long id) {
+    public Category updateCategoryName(String newCatName, UUID id) {
         if(newCatName == null
                 || newCatName.substring(1, newCatName.length() - 1).trim().isEmpty()) {
             LOGGER.warn("METHOD UPDATE_CATEGORY: The category name field is empty!");

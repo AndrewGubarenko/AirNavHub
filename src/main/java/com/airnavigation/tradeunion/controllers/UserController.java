@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 /**
  * @author Andrii Hubarenko
  * The REST controller for processing user`s requests
@@ -31,7 +33,7 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     @ResponseBody
-    public ResponseEntity<User> getUser (@PathVariable long id) {
+    public ResponseEntity<User> getUser (@PathVariable UUID id) {
         User response = userService.getUser(id);
         String username = cryptographer.encode(response.getUsername());
         response.setUsername(username);
@@ -42,7 +44,7 @@ public class UserController {
 
     @PutMapping(path = "/{id}/password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePassword changePassword,
-                                                 @PathVariable long id) {
+                                                 @PathVariable UUID id) {
         ChangePassword decodedChangePassword = new ChangePassword();
         decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
         decodedChangePassword.setNewPassword(cryptographer.decode(changePassword.getNewPassword()));
@@ -65,12 +67,12 @@ public class UserController {
      */
     @PostMapping(path = "/{id}/questionnaire", consumes = "application/json")
     public ResponseEntity<Questionnaire> saveQuestionnaire (@RequestBody Questionnaire questionnaire,
-                                                            @PathVariable long id) {
+                                                            @PathVariable UUID id) {
         Questionnaire result = userService.saveQuestionnaire(id, questionnaire);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     @GetMapping(path = "/{id}/questionnaire")
-    public ResponseEntity<Questionnaire> getQuestionnaire (@PathVariable long id) {
+    public ResponseEntity<Questionnaire> getQuestionnaire (@PathVariable UUID id) {
         Questionnaire result = userService.getQuestionnaire(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

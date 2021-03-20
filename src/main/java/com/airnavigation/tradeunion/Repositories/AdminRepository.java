@@ -6,13 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for administrative functions
  */
 @Repository
-public interface AdminRepository extends CrudRepository<User, Long> {
+public interface AdminRepository extends CrudRepository<User, UUID> {
     /**
      * Method for retrieving of user by it`s first name and last name
      * @param firstName user`s first name

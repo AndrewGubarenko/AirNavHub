@@ -44,7 +44,6 @@
 		<java.version>8</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
-		<tomcat.version>8.5.23</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -92,6 +91,7 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -144,13 +144,13 @@
 	<build>
 		<plugins>
 
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
 <!--			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -223,7 +223,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-
 				<executions>
 					<execution>
 						<phase>package</phase>

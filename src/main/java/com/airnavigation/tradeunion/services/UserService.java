@@ -53,7 +53,7 @@ public class UserService implements UserServiceInterface {
     @Override
     @Transactional
     @PreAuthorize("hasRole('USER') and #id == authentication.principal.getId() and #changePassword.currentPassword == authentication.credentials")
-    public String changePassword(ChangePassword changePassword, long id) {
+    public String changePassword(ChangePassword changePassword, UUID id) {
         String response;
         Optional<User> userForUpdateOpt = userRepository.findById(id);
 
@@ -101,7 +101,7 @@ public class UserService implements UserServiceInterface {
     @Transactional
     @PreAuthorize("hasRole('USER') and #id == authentication.principal.getId()")
     @PostAuthorize("returnObject.username == authentication.principal.username")
-    public User getUser(long id) {
+    public User getUser(UUID id) {
         Optional<User> foundUserOpt = userRepository.findById(id);
         if(!foundUserOpt.isPresent()) {
             LOGGER.warn("METHOD GET_USER: User with id=" + id + " has been not found!");
@@ -181,7 +181,7 @@ public class UserService implements UserServiceInterface {
     @Override
     @Transactional
     @PreAuthorize("hasRole('USER') and #id == authentication.principal.getId()")
-    public Questionnaire saveQuestionnaire(long id, Questionnaire questionnaire) {
+    public Questionnaire saveQuestionnaire(UUID id, Questionnaire questionnaire) {
         StringBuilder response = new StringBuilder();
         Optional<User> userOpt = userRepository.findById(id);
         if(userOpt.isPresent()) {
@@ -252,7 +252,7 @@ public class UserService implements UserServiceInterface {
     @Override
     @Transactional
     @PreAuthorize("hasRole('USER') and #id == authentication.principal.getId()")
-    public Questionnaire getQuestionnaire(long id) {
+    public Questionnaire getQuestionnaire(UUID id) {
         Optional<User> userOpt = userRepository.findById(id);
         if(userOpt.isPresent()) {
             User user = userOpt.get();

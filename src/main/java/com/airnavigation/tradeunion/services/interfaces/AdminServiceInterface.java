@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
@@ -49,7 +50,7 @@ public interface AdminServiceInterface {
      * @param id id of user, that should be retrieved
      * @return user
      */
-    User getUser(long id);
+    User getUser(UUID id);
 
     /**
      * Method for searching user by it`s username, firstName or lastName, that request contains
@@ -64,14 +65,14 @@ public interface AdminServiceInterface {
      * @param updatedUser updated user`s object from client
      * @return the updated user or throw exception
      */
-    User updateUser (long id, User updatedUser);
+    User updateUser (UUID id, User updatedUser);
 
     /**
      * Method for removing user from data base by it`s Id
      * @param id of user, that should be removed
      * @return String message with a status of operation
      */
-    String deleteUser (long id);
+    String deleteUser (UUID id);
 
     /**
      * Method for retrieving server logs

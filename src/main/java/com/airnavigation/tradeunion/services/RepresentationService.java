@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RepresentationService {
@@ -40,7 +41,7 @@ public class RepresentationService {
 
     @Transactional
     @PreAuthorize("isAuthenticated()")
-    public RepresentationContainer createRestrictRepresentation (long id) {
+    public RepresentationContainer createRestrictRepresentation (UUID id) {
         RepresentationContainer representation = new RepresentationContainer();
         User authenticatedUser = userService.getUser(id);
         List<News> newsList = newsService.getListOfNews();

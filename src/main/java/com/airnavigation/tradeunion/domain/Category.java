@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * @author Andrii Hubarenko
@@ -21,12 +22,12 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private UUID id;
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @ElementCollection(targetClass = HashSet.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name="sub_categories")
     private Set<String> subCategories = new HashSet<>();
 

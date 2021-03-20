@@ -5,6 +5,8 @@ import com.airnavigation.tradeunion.domain.PlainDomain.Feedback;
 import com.airnavigation.tradeunion.domain.Questionnaire;
 import com.airnavigation.tradeunion.domain.User;
 
+import java.util.UUID;
+
 /**
  * @author Andrii Hubarenko
  * The interface for User Service class
@@ -17,14 +19,14 @@ public interface UserServiceInterface {
      * @param id id of user, who is going to change his password
      * @return String message with a status of operation
      */
-    String changePassword(ChangePassword changePassword, long id);
+    String changePassword(ChangePassword changePassword, UUID id);
 
     /**
      * Method for extraction of user by it`s Id
      * @param id id of user, that should be retrieved
      * @return extracted user or throw exception
      */
-    User getUser (long id);
+    User getUser (UUID id);
 
     /**
      * Method that allow to reset the forgotten password for user.
@@ -46,12 +48,12 @@ public interface UserServiceInterface {
      * @param questionnaire a questionnaire object
      * @return saved questionnaire
      */
-    Questionnaire saveQuestionnaire(long id, Questionnaire questionnaire);
+    Questionnaire saveQuestionnaire(UUID id, Questionnaire questionnaire);
 
     /**
      * method for getting user's questionnaire
      * @param id id of questionnaire`s owner
      * @return retrieved questionnaire
      */
-    Questionnaire getQuestionnaire(long id);
+    Questionnaire getQuestionnaire(UUID id);
 }

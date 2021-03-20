@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -24,7 +25,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private UUID id;
 
     @NonNull
     @Column(name = "username", unique = true, nullable = false)

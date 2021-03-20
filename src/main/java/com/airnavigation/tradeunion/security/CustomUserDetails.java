@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,5 +16,5 @@ public class CustomUserDetails extends User {
         super(username, password, authorities);
     }
 
-    private long id;
+    private UUID id;
 }

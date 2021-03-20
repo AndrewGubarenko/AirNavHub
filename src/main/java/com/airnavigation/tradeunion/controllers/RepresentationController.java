@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 /**
  * @author Andrii Hubarenko
  * Controller for Main Page
@@ -36,7 +38,7 @@ public class RepresentationController {
     }
 
     @GetMapping(path = "/full_main/{id}")
-    public ResponseEntity<RepresentationContainer> getRepresentation(@PathVariable long id) {
+    public ResponseEntity<RepresentationContainer> getRepresentation(@PathVariable UUID id) {
         RepresentationContainer result = service.createRestrictRepresentation(id);
         result.getAuthorizedUser().setPassword("");
         return ResponseEntity.status(HttpStatus.OK).body(result);
