@@ -13,7 +13,7 @@
 	<groupId>com.airnavigation.tradeunion</groupId>
 	<artifactId>airnavigation.tradeunion</artifactId>
 	<version>1.0.0-RELEASE</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
@@ -41,10 +41,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>8</java.version>
+		<java.version>1.8</java.version>
 		<start-class>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</start-class>
 		<slf4j.version>1.7.30</slf4j.version>
-		<tomcat.version>8.5.23</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -93,32 +92,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-core</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jasper</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jasper-el</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jsp-api</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>4.1.2</version>
@@ -154,11 +127,11 @@
 			<version>1.6</version>
 		</dependency>-->
 
-		<!--<dependency>
+		<dependency>
 			<groupId>com.heroku</groupId>
 			<artifactId>webapp-runner-main</artifactId>
 			<version>9.0.41.0</version>
-		</dependency>-->
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -173,24 +146,22 @@
 			</plugin>-->
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>appassembler-maven-plugin</artifactId>
-				<version>2.0.0</version>
-				<configuration>
-					<assembleDirectory>target</assembleDirectory>
-					<programs>
-						<program>
-							<mainClass>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</mainClass>
-							<name>airnavigation</name>
-						</program>
-					</programs>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
 						<phase>package</phase>
-						<goals>
-							<goal>assemble</goal>
-						</goals>
+						<goals><goal>copy</goal></goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.heroku</groupId>
+									<artifactId>webapp-runner</artifactId>
+									<version>9.0.41.0</version>
+									<destFileName>webapp-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
