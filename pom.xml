@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.airnavigation.tradeunion</groupId>
-	<artifactId>airnavigation.tradeunion</artifactId>
+	<artifactId>airnavigation</artifactId>
 	<version>1.0.0-RELEASE</version>
 	<packaging>war</packaging>
 	<name>airnavigation tradeunion web resource</name>
