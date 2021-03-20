@@ -10,7 +10,7 @@ let store;
 let startUrl;
 
 /*if(process.env.NODE_ENV === "production") {*/
-	startUrl = "/airnavigation/";
+	startUrl = "./";
 	store = createStore(mainReducer);
 /*}*/
 
