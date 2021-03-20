@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -97,11 +102,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/user/logout").permitAll()
             .and()
                 .csrf().disable()
-                .cors().disable()//configurationSource(corsConfiguration())
+                .cors().configurationSource(corsConfiguration())
         ;
     }
 
-/*    //TODO: repair the origins, methods, headers
+    //TODO: repair the origins, methods, headers
     @Bean
     CorsConfigurationSource corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -112,7 +117,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
-    }*/
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
