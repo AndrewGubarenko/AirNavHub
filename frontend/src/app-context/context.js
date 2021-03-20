@@ -10,7 +10,7 @@ let store;
 let startUrl;
 
 /*if(process.env.NODE_ENV === "production") {*/
-	startUrl = "https://localhost:8080/";
+	startUrl = "/airnavigation/";
 	store = createStore(mainReducer);
 /*}*/
 
