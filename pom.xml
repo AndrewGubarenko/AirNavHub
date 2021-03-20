@@ -154,11 +154,11 @@
 			<version>1.6</version>
 		</dependency>-->
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.heroku</groupId>
 			<artifactId>webapp-runner-main</artifactId>
 			<version>9.0.41.0</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>
@@ -180,8 +180,8 @@
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
-							<mainClass>launch.Main</mainClass>
-							<name>webapp</name>
+							<mainClass>com.airnavigation.tradeunion.AirnavigationTradeunionWebResourceApplication</mainClass>
+							<name>airnavigation</name>
 						</program>
 					</programs>
 				</configuration>
