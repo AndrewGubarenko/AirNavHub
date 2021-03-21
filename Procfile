@@ -1,1 +1,1 @@
-web: java -jar target/airnavigation-1.0.0-RELEASE.jar
+web: java -jar target/airnavigation-1.0.0-RELEASE.war

@@ -13,7 +13,7 @@
 	<groupId>com.airnavigation.tradeunion</groupId>
 	<artifactId>airnavigation</artifactId>
 	<version>1.0.0-RELEASE</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
@@ -50,6 +50,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
@@ -76,7 +80,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!--<dependency>
+<!--		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
@@ -145,6 +149,12 @@
 	<build>
 		<plugins>
 
+			<!--<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>1.1.1</version>
+			</plugin>-->
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -152,6 +162,17 @@
 					<mainClass>${start-class}</mainClass>
 				</configuration>
 			</plugin>
+<!--			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-5</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<finalName>airnavigation-1.0.0-RELEASE.war</finalName>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+			</plugin>-->
 
 <!--			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
