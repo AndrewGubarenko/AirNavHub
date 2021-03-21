@@ -103,7 +103,7 @@ class FileContainer extends React.Component {
       })}
       </Tabs>
      } else {
-       shortFilesArray[0] = <p id="no__files" key="zeroFiles">Покищо немає файлів..</p>
+       shortFilesArray[0] = <p id="no__files" key="zeroFiles">Поки що немає файлів..</p>
      }
     this.setState({filesArray: shortFilesArray});
   }
@@ -157,7 +157,7 @@ class FileContainer extends React.Component {
       })}
       </Tabs>
     } else {
-      longFilesArray[0] = <p id="no__files" key="zeroFiles">Покищо немає файлів..</p>
+      longFilesArray[0] = <p id="no__files" key="zeroFiles">Поки що немає файлів..</p>
     }
     this.setState({filesArray: longFilesArray});
   }

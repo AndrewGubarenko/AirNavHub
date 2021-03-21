@@ -65,7 +65,7 @@ class MainPageContainer extends React.Component {
            />
       }
     } else {
-      shortNewsArray[0] = <p key="zeroNews">Покищо немає новин..</p>
+      shortNewsArray[0] = <p key="zeroNews">Поки що немає новин..</p>
     }
     this.setState({newsArray: shortNewsArray});
   }
@@ -80,7 +80,7 @@ class MainPageContainer extends React.Component {
            />
       });
     } else {
-      longNewsArray[0] = <p key="zeroNews">Покищо немає новин..</p>
+      longNewsArray[0] = <p key="zeroNews">Поки що немає новин..</p>
     }
     this.setState({newsArray: longNewsArray});
   }
