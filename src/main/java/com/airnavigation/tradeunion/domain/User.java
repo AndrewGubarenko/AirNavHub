@@ -43,7 +43,7 @@ public class User {
     private String lastName;
 
     @Column(name = "count" , columnDefinition="Decimal(10,2) default '0.00'")
-    private double count;
+    private Double count;
 
     @NonNull
     @Column(name = "gender", nullable = false)
