@@ -1,0 +1,208 @@
+.header-container {
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  position: absolute;
+}
+
+.logo-container {
+  display: block;
+  margin: auto;
+}
+
+#logo {
+  width: 200px;
+  height: 200px;
+}
+
+#logo:hover {
+  cursor: pointer;
+}
+
+.menu-container {
+
+}
+
+.menu-ul {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-left: 0;
+}
+
+.menu-li {
+  width: auto;
+  margin: 0 0 0 50px;
+  list-style-type: none;
+  font-size: 24px;
+  transition: color 0.2s linear;
+}
+
+.menu-li:hover {
+  cursor: pointer;
+  color: darkgrey;
+}
+
+/*burger_menu*/
+#menu__toggle {
+  opacity: 0;
+}
+
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 26;
+}
+/* добавляем "гамбургер" */
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #09173f;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+
+/* контейнер меню */
+.menu__box {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: auto;
+  margin: 0;
+  padding: 70px 30px 10px 0;
+  list-style: none;
+  text-align: right;
+  background-color: transparent;
+}
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  right: 0;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: .25s;
+}
+.menu__box {
+  transition-duration: .25s;
+}
+.menu__item {
+  transition-duration: .25s;
+}
+.navigation_burger_menu {
+  display: none;
+}
+
+
+@media (max-width: 1199px) {
+  .menu-li {
+    margin: 0 0 0 30px;
+  }
+  .menu-ul {
+    margin-right: 45px;
+  }
+}
+@media (max-width: 1023px) {
+  #logo {
+    width: 150px;
+    height: 150px;
+  }
+  .menu-li {
+    margin: 0 0 0 40px;
+    font-size: 18px;
+  }
+  .menu-ul {
+    margin-right: 40px;
+  }
+}
+@media (max-width: 899px) {
+  .menu-li {
+    margin: 0 0 0 20px;
+    font-size: 16px;
+  }
+  #logo {
+    width: 120px;
+    height: 120px;
+  }
+  .menu-ul {
+    margin-right: 35px;
+  }
+}
+@media (max-width: 649px) {
+  .menu-li {
+    font-size: 14px;
+  }
+  .menu-ul {
+    margin-right: 30px;
+  }
+}
+@media (max-width: 549px) {
+  .menu-ul {
+    display: none;
+  }
+  .navigation_burger_menu {
+    display: block;
+  }
+  .burger_menu_li {
+    font-size: 18px;
+    line-height: 2em;
+  }
+  #logo {
+    width: 90px;
+    height: 90px;
+  }
+  .menu-ul {
+    margin-right: 25px;
+  }
+}
+@media (max-width: 449px) {
+  .menu-li {
+    margin: 0 0 0 10px;
+  }
+  .menu-ul {
+    margin-right: 15px;
+  }
+}
+@media (max-width: 399px) {
+
+}
+@media (max-width: 349px) {
+  #logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+@media (max-width: 219px) {
+
+}
