@@ -12,16 +12,14 @@ class UserAgreementContainer extends React.Component {
     }
 
     render() {
-        return (
+        return(
             <UserAgreement/>
         );
     }
 }
-
 const mapStateToProps = (state) => {
     return Object.assign({}, state, {
         spinnerVisibility: state.spinnerVisibility.spinnerVisibility
     });
 }
-
 export default connect(mapStateToProps)(UserAgreementContainer);

@@ -1,14 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {setToMainDisplayMode} from "../reducers/actions/OnMainPageAction";
-import {setSpinnerVisibility} from "../reducers/actions/spinnerAction";
 
 class UserAgreement extends React.Component {
-
-    componentDidMount() {
-        this.props.dispatch(setToMainDisplayMode("block"));
-        this.props.dispatch(setSpinnerVisibility("none"));
-    }
 
     render() {
         return(
