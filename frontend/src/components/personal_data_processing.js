@@ -1,13 +1,6 @@
 import React from 'react';
-import {setToMainDisplayMode} from "../reducers/actions/OnMainPageAction";
-import {setSpinnerVisibility} from "../reducers/actions/spinnerAction";
 
 class PersonalDataProcessing extends React.Component {
-
-    componentDidMount() {
-        this.props.dispatch(setToMainDisplayMode("block"));
-        this.props.dispatch(setSpinnerVisibility("none"));
-    }
 
     render() {
         return(
