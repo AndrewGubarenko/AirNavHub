@@ -1,0 +1,1 @@
+web: java -jar target/airnavigation-1.0.0-RELEASE.war
