@@ -328,8 +328,7 @@ public class AdminService implements AdminServiceInterface {
 
     @Override
     public List<String> getLogs(int amountOfLogs) throws IOException {
-        //TODO: check path on production
-        Path path = Paths.get("ProjectLog.log");
+        Path path = Paths.get("logs/ProjectLog.log");
         List<String> response = new ArrayList<>(Files.readAllLines(path));
         if(amountOfLogs == 0) {
             return response;

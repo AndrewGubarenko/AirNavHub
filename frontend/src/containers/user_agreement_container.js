@@ -2,6 +2,7 @@ import React from 'react';
 import {setToMainDisplayMode} from "../reducers/actions/OnMainPageAction";
 import {setSpinnerVisibility} from "../reducers/actions/spinnerAction";
 import UserAgreement from "../components/user_agreement";
+import {connect} from "react-redux";
 
 class UserAgreementContainer extends React.Component {
 
@@ -11,9 +12,16 @@ class UserAgreementContainer extends React.Component {
     }
 
     render() {
-        return(
-            <UserAgreement />
+        return (
+            <UserAgreement/>
         );
     }
 }
-export default UserAgreementContainer;
+
+const mapStateToProps = (state) => {
+    return Object.assign({}, state, {
+        spinnerVisibility: state.spinnerVisibility.spinnerVisibility
+    });
+}
+
+export default connect(mapStateToProps)(UserAgreementContainer);

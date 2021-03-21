@@ -2,6 +2,7 @@ import React from 'react';
 import {setToMainDisplayMode} from "../reducers/actions/OnMainPageAction";
 import {setSpinnerVisibility} from "../reducers/actions/spinnerAction";
 import PersonalDataProcessing from "../components/personal_data_processing";
+import {connect} from "react-redux";
 
 class PersonalDataProcessingContainer extends React.Component {
 
@@ -16,4 +17,10 @@ class PersonalDataProcessingContainer extends React.Component {
         );
     }
 }
-export default PersonalDataProcessingContainer;
+const mapStateToProps = (state) => {
+    return Object.assign({}, state, {
+        spinnerVisibility: state.spinnerVisibility.spinnerVisibility
+    });
+}
+
+export default connect(mapStateToProps)(PersonalDataProcessingContainer);
