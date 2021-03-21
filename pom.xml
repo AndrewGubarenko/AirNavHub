@@ -13,7 +13,7 @@
 	<groupId>com.airnavigation.tradeunion</groupId>
 	<artifactId>airnavigation</artifactId>
 	<version>1.0.0-RELEASE</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
 
