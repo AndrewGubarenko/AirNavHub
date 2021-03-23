@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 import { Redirect } from 'react-router'
 import MainPageContainer from './containers/main-page-container';
 import HeaderContainer from './containers/header-container';
@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <BrowserRouter>
+          <HashRouter>
             <Route exact path="/" render={() => {return(<Redirect to="/main"/>)}} />
             <Route path="/" component={HeaderContainer} />
             <Route path="/" component={SpinnerContainer} />
@@ -86,7 +86,7 @@ class App extends Component {
             <Route path="/user_agreement" component={UserAgreementContainer} />
             <Route path="/personal_data_processing" component={PersonalDataProcessingContainer} />
             <Route path="/" component={Footer} />
-          </BrowserRouter>
+          </HashRouter>
         </PersistGate>
       </Provider>
     );

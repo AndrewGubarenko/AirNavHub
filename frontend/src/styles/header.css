@@ -151,18 +151,11 @@
     margin: 0 0 0 20px;
     font-size: 16px;
   }
-  #logo {
-    width: 120px;
-    height: 120px;
-  }
   .menu-ul {
     margin-right: 35px;
   }
 }
 @media (max-width: 649px) {
-  .menu-li {
-    font-size: 14px;
-  }
   .menu-ul {
     margin-right: 30px;
   }
@@ -177,10 +170,6 @@
   .burger_menu_li {
     font-size: 18px;
     line-height: 2em;
-  }
-  #logo {
-    width: 90px;
-    height: 90px;
   }
   .menu-ul {
     margin-right: 25px;
@@ -199,10 +188,13 @@
 }
 @media (max-width: 349px) {
   #logo {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
   }
 }
 @media (max-width: 219px) {
-
+  #logo {
+    width: 80px;
+    height: 80px;
+  }
 }
