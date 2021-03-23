@@ -77,7 +77,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/feedback/{\\d+}").hasRole(Role.USER.name())
                 .antMatchers(HttpMethod.POST, "/feedback/{\\d+}").authenticated()
 
-                .antMatchers("/css/**", "/js/**", "/index*", "/json/**", "/*.ico", "/images/**", "/public/**", "/static/**", "/console/**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/index*", "/json/**", "/*.ico", "/images/**", "/public/**", "/static/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/main").permitAll()
                 .antMatchers(HttpMethod.PUT, "/password").permitAll()
             .and()
@@ -101,7 +101,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         ;
     }
 
-/*    //TODO: repair the origins, methods, headers
+/*
     @Bean
     CorsConfigurationSource corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();

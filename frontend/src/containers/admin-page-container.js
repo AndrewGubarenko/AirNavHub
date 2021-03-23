@@ -232,7 +232,7 @@ class AdminPageContainer extends React.Component {
     this.setState({userBtnContainerDisplay: "none"});
     this.setState({userFindPanelDisplay: "block"});
   }
-  onClickCreateUser = () => {
+  onClickCreateUser = async () => {
     if(this.state.user.username === "") {
       this.setState({borderColorUsername: "red"});
     } else if(this.state.user.firstName === "") {
@@ -242,10 +242,11 @@ class AdminPageContainer extends React.Component {
     } else if(Number.parseFloat(this.state.user.count) !== 0 && !Number.parseFloat(this.state.user.count)) {
       this.setState({borderColorCount: "red"});
     } else {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
       let user = this.state.user;
       let encryptedUsername = this.cipherThis(user.username);
       user.username = encryptedUsername;
-      adminService.createUser(user).then(response => {
+      await adminService.createUser(user).then(response => {
         if(response.ok) {
           return response.json().then(data => {
             let username = this.decipherThis(data.username);
@@ -265,8 +266,9 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
-  onClickUpdateUser = () => {
+  onClickUpdateUser = async () => {
     if(this.state.user.firstName === "") {
       this.setState({borderColorFirstName: "red"});
     } else if(this.state.user.lastName === "") {
@@ -274,10 +276,11 @@ class AdminPageContainer extends React.Component {
     } else if(Number.parseFloat(this.state.user.count) !== 0 && !Number.parseFloat(this.state.user.count)) {
       this.setState({borderColorCount: "red"});
     } else {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
       let user = this.state.user;
       let username = this.cipherThis(this.state.user.username);
       user.username = username;
-      adminService.updateUser(user).then(response => {
+      await adminService.updateUser(user).then(response => {
         if(response.ok) {
           return response.json().then(data => {
             let username = this.decipherThis(data.username);
@@ -294,12 +297,14 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
-  onClickGetUser = () => {
+  onClickGetUser = async () => {
+    this.props.dispatch(setSpinnerVisibility("inline-block"));
     let searchRequest = {username: this.state.user.username,
                          firstName: this.state.user.firstName,
                          lastName: this.state.user.lastName}
-    adminService.findUser(searchRequest).then(response => {
+    await adminService.findUser(searchRequest).then(response => {
       if(response.ok) {
         return response.json().then(data => {
           this.setState({userFindPanelDisplay: "none"})
@@ -309,26 +314,30 @@ class AdminPageContainer extends React.Component {
         response.text().then(error => this.setState({terminalData: error}));
       }
     });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
   onClickDeleteUser = () => {
     this.setState({DeleteUserButtonDisplay: "none"})
     this.setState({DeleteUserYesNoContainerDisplay: "block"})
   }
-  onClickDeleteYes = () => {
-    adminService.deleteUser(this.state.user.id).then(response => {
+  onClickDeleteYes = async () => {
+    this.props.dispatch(setSpinnerVisibility("inline-block"));
+    await adminService.deleteUser(this.state.user.id).then(response => {
       return response.text()
     }).then(data => {
       this.setState({terminalData: data});
     }).then(() => {
       this.setState({userUpdateControlPanelDisplay: "none"});
     });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
   onClickDeleteNo = () => {
     this.setState({DeleteUserButtonDisplay: "block"})
     this.setState({DeleteUserYesNoContainerDisplay: "none"})
   }
 /*User functions*/
+
 /*News functions*/
   onChangeNewsTitle = (event) => {
     this.setState({borderColorTitle: "darkgrey"});
@@ -346,13 +355,14 @@ class AdminPageContainer extends React.Component {
     this.setState({newsBtnContainerDisplay: "none"});
     this.setState({newsControlPanelDisplay: "block"});
   }
-  onClickCreateNews = () => {
+  onClickCreateNews = async () => {
     if(this.state.news.title === "") {
       this.setState({borderColorTitle: "red"});
     } else if(this.state.news.text === "") {
       this.setState({borderColorText: "red"});
     } else {
-      adminService.createNews(this.state.news).then(response => {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
+      await adminService.createNews(this.state.news).then(response => {
         if(response.ok) {
           return response.json().then(data => {
             this.setState({news: data})
@@ -366,15 +376,17 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
-  onClickChangeNews = () => {
+  onClickChangeNews = async () => {
     if(this.state.news.title === "") {
       this.setState({borderColorTitle: "red"});
     } else if(this.state.news.text === "") {
       this.setState({borderColorText: "red"});
     } else {
-      adminService.updateNews(this.state.news).then(response => {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
+      await adminService.updateNews(this.state.news).then(response => {
         if(response.ok) {
           return response.json().then(data => {
           this.setState({news: data});
@@ -385,20 +397,23 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
   onClickDeleteNews = () => {
     this.setState({DeleteNewsButtonDisplay: "none"});
     this.setState({DeleteNewsYesNoContainerDisplay: "block"});
   }
-  onClickNewsDeleteYes = () => {
-    adminService.deleteNews(this.state.news.id).then(response => {
+  onClickNewsDeleteYes = async () => {
+    this.props.dispatch(setSpinnerVisibility("inline-block"));
+    await adminService.deleteNews(this.state.news.id).then(response => {
       return response.text()
     }).then(data => {
       this.setState({terminalData: data});
     }).then(() => {
       this.setState({newsUpdateControlPanelDisplay: "none"});
     });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
   onClickNewsDeleteNo = () => {
     this.setState({DeleteNewsButtonDisplay: "block"});
@@ -524,13 +539,13 @@ class AdminPageContainer extends React.Component {
     )
   }
 
-  onClickUpdateCat = () => {
+  onClickUpdateCat = async () => {
     if(this.state.category.name.trim() === "") {
       this.setState({borderColorCatName: "red"});
     } else {
       let category = this.state.category;
       this.props.dispatch(setSpinnerVisibility("inline-block"));
-      adminService.updateCategory(category.name, category.id).then(response => {
+      await adminService.updateCategory(category.name, category.id).then(response => {
         if(response.ok) {
           return response.json().then(category => {
             this.setState({category: category});
@@ -541,18 +556,18 @@ class AdminPageContainer extends React.Component {
           return response.text().then(error => {this.setState({terminalData: error})});
         }
       });
-      this.props.dispatch(setSpinnerVisibility("none"));
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
   onClickDeleteCategory = () => {
     this.setState({DeleteCategoryButtonDisplay: "none"});
     this.setState({DeleteCategoryYesNoContainerDisplay: "block"});
   }
-  onClickCategoryDeleteYes = () => {
+  onClickCategoryDeleteYes = async () => {
     this.clearState();
     this.props.dispatch(setSpinnerVisibility("inline-block"));
-    adminService.deleteCategory(this.state.category.name).then(response => {
+    await adminService.deleteCategory(this.state.category.name).then(response => {
       if(response.ok) {
         return response.text().then(response => {this.setState({terminalData: response})});
       } else {
@@ -571,7 +586,7 @@ class AdminPageContainer extends React.Component {
     this.setState({filesControlPanelDisplay: "block"});
   }
 
-  onClickCreateFile = () => {
+  onClickCreateFile = async () => {
     if(this.state.file.name.trim() === "") {
       this.setState({borderColorName: "red"});
     } else if(this.state.file.path.trim() === "") {
@@ -581,7 +596,8 @@ class AdminPageContainer extends React.Component {
     } else if(this.state.file.subCategory.trim() === "") {
       this.setState({borderColorSubCategory: "red"});
     } else {
-      adminService.createFile(this.state.file).then(response => {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
+      await adminService.createFile(this.state.file).then(response => {
         if(response.ok) {
           return response.json().then(data => {
             this.setState({file: data});
@@ -596,9 +612,10 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
-  onClickChangeFile = () => {
+  onClickChangeFile = async () => {
     if(this.state.file.name.trim() === "") {
       this.setState({borderColorName: "red"});
     } else if(this.state.file.path.trim() === "") {
@@ -608,7 +625,8 @@ class AdminPageContainer extends React.Component {
     } else if(this.state.file.subCategory.trim() === "") {
       this.setState({borderColorSubCategory: "red"});
     } else {
-      adminService.updateFile(this.state.file).then(response => {
+      this.props.dispatch(setSpinnerVisibility("inline-block"));
+      await adminService.updateFile(this.state.file).then(response => {
         if(response.ok) {
           return response.json().then(data => {
             this.setState({file: data});
@@ -620,14 +638,16 @@ class AdminPageContainer extends React.Component {
         }
       });
     }
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
   onClickDeleteFile = () => {
     this.setState({DeleteFileButtonDisplay: "none"});
     this.setState({DeleteFileYesNoContainerDisplay: "block"});
   }
-  onClickFileDeleteYes = () => {
-    adminService.deleteFile(this.state.file.id).then(response => {
+  onClickFileDeleteYes = async () => {
+    this.props.dispatch(setSpinnerVisibility("inline-block"));
+    await adminService.deleteFile(this.state.file.id).then(response => {
       return response.text();
     }).then(data => {
       this.setState({terminalData: data});
@@ -635,6 +655,7 @@ class AdminPageContainer extends React.Component {
     }).then(() => {
       this.setState({filesUpdateControlPanelDisplay: "none"});
     });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
   onClickFileDeleteNo = () => {
     this.setState({DeleteFileButtonDisplay: "block"});
@@ -974,9 +995,9 @@ class AdminPageContainer extends React.Component {
     this.setState({reportsControlPanelDisplay: "block"});
   }
 
-  onClickGetFullReport = () => {
+  onClickGetFullReport = async () => {
     this.props.dispatch(setSpinnerVisibility("inline-block"));
-    adminService.getFullReport().then(response => {
+    await adminService.getFullReport().then(response => {
       if(response.ok) {
         response.text().then(message => {
           let element = document.createElement('a');
@@ -996,13 +1017,13 @@ class AdminPageContainer extends React.Component {
           this.setState({terminalData: message});
         });
       }
-      this.props.dispatch(setSpinnerVisibility("none"));
-    })
+    });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
-  onClickGetChildrenReport = () => {
+  onClickGetChildrenReport = async () => {
     this.props.dispatch(setSpinnerVisibility("inline-block"));
-    adminService.getChildrenReport().then(response => {
+    await adminService.getChildrenReport().then(response => {
       if(response.ok) {
         response.text().then(message => {
           let element = document.createElement('a');
@@ -1022,8 +1043,8 @@ class AdminPageContainer extends React.Component {
           this.setState({terminalData: message});
         });
       }
-      this.props.dispatch(setSpinnerVisibility("none"));
-    })
+    });
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 /*Reports functions*/
   cipherThis = (text) => {

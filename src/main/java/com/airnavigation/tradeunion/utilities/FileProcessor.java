@@ -38,17 +38,17 @@ public class FileProcessor {
                 throw new NullPointerException("The sheet with name 'Список' has been not found");
             }
 
-            XSSFCell startCell = findXSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
-            int startRow = startCell.getRowIndex();
-            int firstAndLastNameIndex = startCell.getColumnIndex();
-            int countIndex = findXSSFCellIndex(sheet, "Залишок").getColumnIndex();
+            XSSFCell startNameCell = findXSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
+            XSSFCell startCountCell = findXSSFCellIndex(sheet, "Залишок");
 
-            //TODO:repair this
-            if(firstAndLastNameIndex == -1) {
+            if(startNameCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження за іменем не знайдена.");
-            } else if(countIndex == -1) {
+            } else if(startCountCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для Залишок не знайдена.");
             }
+            int startRow = startNameCell.getRowIndex();
+            int firstAndLastNameIndex = startNameCell.getColumnIndex();
+            int countIndex = startCountCell.getColumnIndex();
 
             Iterator rowIter = sheet.rowIterator();
             while (rowIter.hasNext()) {
@@ -72,17 +72,18 @@ public class FileProcessor {
                 throw new NullPointerException("The sheet with name 'Список' has been not found");
             }
 
-            HSSFCell startCell = findHSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
-            int startRow = startCell.getRowIndex();
-            int firstAndLastNameIndex = startCell.getColumnIndex();
-            int countIndex = findHSSFCellIndex(sheet, "Залишок").getColumnIndex();
+            HSSFCell startNameCell = findHSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
+            HSSFCell startCountCell = findHSSFCellIndex(sheet, "Залишок");
 
-            //TODO:repair this
-            if(firstAndLastNameIndex == -1) {
+            if(startNameCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження за іменем не знайдена.");
-            } else if(countIndex == -1) {
+            } else if(startCountCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для Залишок не знайдена.");
             }
+
+            int startRow = startNameCell.getRowIndex();
+            int firstAndLastNameIndex = startNameCell.getColumnIndex();
+            int countIndex = startCountCell.getColumnIndex();
 
             Iterator rowIter = sheet.rowIterator();
             while (rowIter.hasNext()) {
@@ -115,20 +116,22 @@ public class FileProcessor {
                 throw new NullPointerException("The sheet with name 'Список' has been not found");
             }
 
-            XSSFCell startCell = findXSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
-            int startRow = startCell.getRowIndex();
-            int firstAndLastNameIndex = startCell.getColumnIndex();
-            int emailIndex = findXSSFCellIndex(sheet, "eMail").getColumnIndex();
-            int genderIndex = findXSSFCellIndex(sheet, "Стать").getColumnIndex();
+            XSSFCell startNameCell = findXSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
+            XSSFCell startEmailCell = findXSSFCellIndex(sheet, "eMail");
+            XSSFCell startGenderCell = findXSSFCellIndex(sheet, "Стать");
 
-            //TODO:repair this
-            if(firstAndLastNameIndex == -1) {
+            if(startNameCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження за іменем не знайдена.");
-            } else if(emailIndex == -1) {
+            } else if(startEmailCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для eMail не знайдена.");
-            } else if(genderIndex == -1) {
+            } else if(startGenderCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для Статі не знайдена.");
             }
+
+            int startRow = startNameCell.getRowIndex();
+            int firstAndLastNameIndex = startNameCell.getColumnIndex();
+            int emailIndex = startEmailCell.getColumnIndex();
+            int genderIndex = startGenderCell.getColumnIndex();
 
             Iterator rowIter = sheet.rowIterator();
             while (rowIter.hasNext()) {
@@ -161,20 +164,21 @@ public class FileProcessor {
             HSSFSheet sheet= workBook.getSheet("UserList");
             Iterator rowIter = sheet.rowIterator();
 
-            HSSFCell startCell = findHSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
-            int startRow = startCell.getRowIndex();
-            int firstAndLastNameIndex = startCell.getColumnIndex();
-            int emailIndex = findHSSFCellIndex(sheet, "eMail").getColumnIndex();
-            int genderIndex = findHSSFCellIndex(sheet, "Стать").getColumnIndex();
-
-            //TODO:repair this
-            if(firstAndLastNameIndex == -1) {
+            HSSFCell startNameCell = findHSSFCellIndex(sheet, "Прізвище, ім'я, по-батькові");
+            HSSFCell startEmailCell = findHSSFCellIndex(sheet, "eMail");
+            HSSFCell startGenderCell = findHSSFCellIndex(sheet, "Стать");
+            if(startNameCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження за іменем не знайдена.");
-            } else if(emailIndex == -1) {
+            } else if(startEmailCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для eMail не знайдена.");
-            } else if(genderIndex == -1) {
+            } else if(startGenderCell == null) {
                 throw new NullPointerException("Таблиця неправильного формату. Точка входження для Статі не знайдена.");
             }
+
+            int startRow = startNameCell.getRowIndex();
+            int firstAndLastNameIndex = startNameCell.getColumnIndex();
+            int emailIndex = startEmailCell.getColumnIndex();
+            int genderIndex = startGenderCell.getColumnIndex();
 
             while (rowIter.hasNext()) {
                 HSSFRow row = (HSSFRow) rowIter.next();

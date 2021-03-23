@@ -217,7 +217,7 @@ public class AdminService implements AdminServiceInterface {
     @Override
     @Transactional
     public User updateUser(UUID id, User updatedUser) {
-        if(id != updatedUser.getId()) {
+        if(!id.equals(updatedUser.getId())) {
             LOGGER.warn("METHOD UPDATE: Unauthorized access attemption! HTTP request was changed! The id in path variable and user id does not match!");
             throw new IllegalAccessAttemtException("Спроба незаконного доступу до даних!");
         }
@@ -278,13 +278,11 @@ public class AdminService implements AdminServiceInterface {
 
         } else if(userForUpdate.getRoles().contains(Role.ADMINISTRATOR) && !updatedUser.getRoles().contains(Role.ADMINISTRATOR)) {
             userForUpdate.setRoles(updatedUser.getRoles());
-        } else {
-            userForUpdate.setRoles(updatedUser.getRoles());
             adminRepository.save(userForUpdate);
 
             try {
                 emailService.sendMimeMessage(userForUpdate.getUsername(),
-                        "Встановлення рівня доступу Адміністратор",
+                        "Встановлення рівня доступу Користувач",
                         "andrewgubarenko@gmail.com",
                         new StringBuilder()
                                 .append("<html><body>")
@@ -299,6 +297,8 @@ public class AdminService implements AdminServiceInterface {
             } catch (MessagingException ex) {
                 LOGGER.info("Something wrong with email. Unable to send an email to " + userForUpdate.getUsername() + "\n" + ex.getLocalizedMessage());
             }
+        } else {
+            userForUpdate.setRoles(updatedUser.getRoles());
         }
         LOGGER.info("METHOD UPDATE: User with username " + updatedUser.getUsername() + " was updated");
         return userForUpdate;
@@ -316,8 +316,10 @@ public class AdminService implements AdminServiceInterface {
             throw new NoSuchElementException("Такого користувача не знайдено!");
         }
         User userForDelete = userForDeleteOpt.get();
-        Questionnaire questionnaireForDelete = userForDelete.getQuestionnaire();
-        questionnaireRepository.delete(questionnaireForDelete);
+        if(userForDelete.getQuestionnaire() != null) {
+            Questionnaire questionnaireForDelete = userForDelete.getQuestionnaire();
+            questionnaireRepository.delete(questionnaireForDelete);
+        }
         adminRepository.delete(userForDelete);
         response.append("Користувача з email ")
                 .append(userForDeleteOpt.get().getUsername())

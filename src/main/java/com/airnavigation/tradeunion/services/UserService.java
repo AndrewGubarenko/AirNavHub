@@ -164,7 +164,7 @@ public class UserService implements UserServiceInterface {
     public String receiveEmailFromUser(Feedback feedback) {
         String response;
         try {
-            emailService.sendMimeMessage("aeronavua@gmail.com",
+            emailService.sendMimeMessage(/*"aeronavua@gmail.com"*/"andrewgubarenko@gmail.com",
                     feedback.getTheme(),
                     feedback.getFrom(),
                     feedback.getBody(),

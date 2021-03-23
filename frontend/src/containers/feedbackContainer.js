@@ -28,6 +28,19 @@ class FeedbackContainer extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("block"));
+    this.props.dispatch(setSpinnerVisibility("none"));
+  }
+
+  clearState = () => {
+    this.setState({from: this.props.user.username});
+    this.setState({theme: ""});
+    this.setState({body: ""});
+    this.setState({files: []});
+    this.setState({fileLoaders: []});
+    this.setState({borderColorEmailTheme: "darkgrey"});
+    this.setState({borderColorEmailBody: "darkgrey"});
+    this.setState({emailFileInputColor: "red"});
+    this.setState({message: ""});
   }
 
   onChangEmailTheme = (event) => {
@@ -79,7 +92,7 @@ class FeedbackContainer extends React.Component {
     this.setState({fileLoaders: fileLoaders})
   }
 
-  onClickSendEmail = () => {
+  onClickSendEmail = async () => {
     if(this.state.theme === "") {
       this.setState({borderColorEmailTheme: "red"});
     } else if(this.state.body === "") {
@@ -96,9 +109,10 @@ class FeedbackContainer extends React.Component {
         body: this.state.body,
         files: jsonFiles
       }
-      userService.sendFeedback(feedback).then(response => {
+      await userService.sendFeedback(feedback).then(response => {
         response.text().then(message => this.setState({message: message}));
       });
+      this.clearState();
       this.props.dispatch(setSpinnerVisibility("none"));
     }
   }

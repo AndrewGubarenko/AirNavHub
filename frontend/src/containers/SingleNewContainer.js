@@ -15,7 +15,7 @@ class SingleNewContainer extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("block"));
-    let id = Number(this.props.match.params.id);
+    let id = this.props.match.params.id;
     this.props.news.forEach((sNew, i) => {
       if(sNew.id === id) {
         this.setState({singleNew: sNew});

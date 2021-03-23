@@ -9,6 +9,7 @@ import {cipherService, userService} from '../app-context/context';
 import {setNews} from '../reducers/actions/newsAction';
 import {setFiles} from '../reducers/actions/fileAction';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
+import FilesContainer from "./file-container";
 
 let CryptoJS = require("crypto-js");
 
@@ -73,6 +74,7 @@ class AuthenticationContainer extends React.Component {
             } else {
               this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, false));
             }
+            this.setFilesContainer();
           });
         } else {
           this.setState({message: "Не вдалося авторизуватися. Спробуйте ще."});
@@ -88,6 +90,18 @@ class AuthenticationContainer extends React.Component {
   onClickClose = () => {
     this.props.dispatch(setIsAuthContainerVisible("none"));
     animateScroll.scrollToTop();
+  }
+
+  setFilesContainer = () => {
+    if(this.props.isAuthenticated) {
+      return(
+          <FilesContainer
+              displayFiles={this.props.files.filesVisibility}
+              isAuthenticated={this.props.isAuthenticated}
+              files={this.props.files}
+          />
+      );
+    }
   }
 
   onShowPass = () => {

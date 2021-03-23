@@ -60,7 +60,7 @@ public class FileService {
         Optional<File> fileForUpdateOpt = filesRepository.findById(id);
         if (fileForUpdateOpt.isPresent()) {
             File fileForUpdate = fileForUpdateOpt.get();
-            if(fileForUpdate.getId() != id) {
+            if(!fileForUpdate.getId().equals(id)) {
                 LOGGER.warn("METHOD CHANGE_FILE: Unauthorized access attemption! HTTP request was changed! The id in path variable and file id does not match!");
                 throw new IllegalAccessAttemtException("Спроба несанкціонованого доступу до даних!");
             }

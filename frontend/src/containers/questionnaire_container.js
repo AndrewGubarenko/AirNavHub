@@ -78,6 +78,7 @@ class QuestionnaireContainer extends React.Component {
           if (data.id !== 0 && data.children !== null) {
             return data;
           } else {
+            this.setState({nameUkrainian: this.props.user.lastName + " " +this.props.user.firstName});
             return null;
           }
         })

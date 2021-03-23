@@ -28,7 +28,6 @@ import java.util.NoSuchElementException;
  * @author Andrii Hubarenko
  * Exception Handler
  */
-//TODO: remove Localized Messages before production
 @RestControllerAdvice
 public class CustomSpringExceptionHandler extends ExceptionHandlerExceptionResolver {
 
@@ -162,7 +161,6 @@ public class CustomSpringExceptionHandler extends ExceptionHandlerExceptionResol
     public ResponseEntity<String> onIncorrectResultSizeDataAccessException(IncorrectResultSizeDataAccessException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StringBuilder()
                 .append("ОТ ХАЛЕПА! Duplicate firstName and lastName in DB")
-                .append(ex.getCause())
                 .toString());
     }
 
