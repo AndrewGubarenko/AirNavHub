@@ -7,10 +7,7 @@ export default class UserService {
     return fetch(this.startUrl + "/" + id, {
       method: "get",
       headers: new Headers({
-        "Content-type": "application/json;chartSet=UTF-8",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-        "Access-Control-Allow-Headers": "X-Custom-Header"
+        "Content-type": "application/json;chartSet=UTF-8"
 	    })
     });
   }
@@ -27,9 +24,6 @@ export default class UserService {
       method: "post",
 
       headers: new Headers({
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-        "Access-Control-Allow-Headers": "X-Custom-Header",
         "Content-Type": "application/json;charset=utf-8"
       })
     });
@@ -38,7 +32,7 @@ export default class UserService {
   logout() {
     return fetch(this.startUrl + "/logout", {
       method: "get"
-    })
+    });
   }
 
   changePassword(passData, id) {

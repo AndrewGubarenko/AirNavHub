@@ -97,22 +97,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/user/logout").permitAll()
             .and()
                 .csrf().disable()
-                .cors().disable()//configurationSource(corsConfiguration())
+                .cors().disable()
         ;
     }
-
-/*
-    @Bean
-    CorsConfigurationSource corsConfiguration() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("*"));
-        corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
-        corsConfiguration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }*/
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

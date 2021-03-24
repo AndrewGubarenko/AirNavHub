@@ -166,7 +166,7 @@ input[type=checkbox]:checked + label{
   .admin_menu {
     font-size: 16px;
     text-align: left;
-    padding: 150px 20px 5px 5px;
+    padding: 200px 20px 5px 5px;
     line-height: 1em;
   }
   .interactive_control_panel_row {
@@ -183,7 +183,6 @@ input[type=checkbox]:checked + label{
 @media (max-width: 649px) {
   .admin_menu {
     font-size: 14px;
-    padding: 150px 20px 5px 5px;
   }
   .admin_menu_list {
     padding-left: 5px;
@@ -216,11 +215,14 @@ input[type=checkbox]:checked + label{
     width: auto;
   }
   .admin_menu, .interactive_control_panel_file_upload, .terminal_input_file {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
   }
 }
 @media (max-width: 349px) {
+  .admin_menu {
+    padding: 150px 20px 5px 5px;
+  }
   .interactive_button_container {
     width: 100px;
   }
@@ -228,24 +230,27 @@ input[type=checkbox]:checked + label{
     display: grid;
     grid-template-columns: 20% 80%;
     text-align: left;
-    font-size: 12px;
+    font-size: 14px;
   }
   .admin_screen_btn {
-    font-size: 12px;
+    font-size: 14px;
     width: 90px;
   }
   .admin_result_list_item, .terminal_input_select optgroup {
-    font-size: 10px;
+    font-size: 14px;
   }
   .admin_menu, .interactive_control_panel_file_upload, .terminal_input_file {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 @media (max-width: 219px) {
+  .admin_menu {
+    padding: 100px 20px 5px 5px;
+  }
   .admin_result_list_item, .terminal_input_select optgroup {
-    font-size: 8px;
+    font-size: 12px;
   }
   .admin_menu, .interactive_control_panel_file_upload, .terminal_input_file {
-    font-size: 8px;
+    font-size: 12px;
   }
 }

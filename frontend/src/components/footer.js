@@ -12,12 +12,12 @@ class Footer extends React.Component {
                 </div>
                 <div className="contacts">
                     <span>Контакти:</span>
-                    <span>
+                    <a href="mailto:aeronavua@gmail.com" style={{textDecoration: "none", color: "white"}}>
                         eMail: aeronavua@gmail.com
-                    </span>
-                    <span>
+                    </a>
+                    <a href="tel:+38-032-297-21-16" style={{textDecoration: "none", color: "white"}}>
                         тел: +38-032-297-21-16
-                    </span>
+                    </a>
                 </div>
                 <div className="copyright" >Copyright © {new Date().getFullYear()} All rights reserved</div>
             </div>

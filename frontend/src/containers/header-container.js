@@ -95,7 +95,7 @@ class HeaderContainer extends React.Component {
     this.setState({isBurgerChecked: false});
     this.props.history.push("/main");
   }
-  onClickToAdmin = (event) => {
+  onClickToAdmin = () => {
     this.setState({isBurgerChecked: false});
     this.props.history.push("/administrator");
   }
@@ -112,7 +112,6 @@ class HeaderContainer extends React.Component {
                     this.props.dispatch(setIsAuthContainerVisible("none"));
                     this.props.dispatch(setAdminDisplayMode("none"));
                     this.props.dispatch(setFiles(null, "none"));
-                    this.props.history.push("/main");
                   } else {
                     alert("Халепа! Щось пішло не так.")
                   }
