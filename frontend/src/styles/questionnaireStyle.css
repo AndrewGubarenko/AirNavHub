@@ -68,6 +68,13 @@ input[type="date"] {
   top:-30px;
 }
 
+.questionnaire_save_btn {
+  height: auto;
+  display: flex;
+  justifyContent: flex-end;
+  marginTop: 10px;
+}
+
 @media (max-width: 1549px) {
   .questionnaire-form {
     width: 90%;
