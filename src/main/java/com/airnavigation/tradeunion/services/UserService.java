@@ -78,7 +78,7 @@ public class UserService implements UserServiceInterface {
             try {
                 emailService.sendMimeMessage(userForUpdate.getUsername(),
                         "Зміна паролю",
-                        "andrewgubarenko@gmail.com",
+                        "airnavigation.tradeunion@gmail.com",
                         new StringBuilder()
                                 .append("<html><body>")
                                 .append("<img src='cid:logo' alt='Logo' width='128' height='128'/>")
@@ -123,7 +123,7 @@ public class UserService implements UserServiceInterface {
             try {
                 emailService.sendMimeMessage(user.getUsername(),
                         "Відновлення паролю",
-                        "andrewgubarenko@gmail.com",
+                        "airnavigation.tradeunion@gmail.com",
                         new StringBuilder()
                                 .append("<html><body>")
                                 .append("<img src='cid:logo' alt='Logo' width='128' height='128'/>")
@@ -164,7 +164,7 @@ public class UserService implements UserServiceInterface {
     public String receiveEmailFromUser(Feedback feedback) {
         String response;
         try {
-            emailService.sendMimeMessage(/*"aeronavua@gmail.com"*/"andrewgubarenko@gmail.com",
+            emailService.sendMimeMessage("aeronavua@gmail.com",
                     feedback.getTheme(),
                     feedback.getFrom(),
                     feedback.getBody(),

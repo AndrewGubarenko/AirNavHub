@@ -110,7 +110,7 @@ public class AdminService implements AdminServiceInterface {
         try {
             emailService.sendMimeMessage(user.getUsername(),
                     "Реєстрація користувача",
-                    "andrewgubarenko@gmail.com",
+                    "airnavigation.tradeunion@gmail.com",
                     new StringBuilder().append("<html><body>")
                             .append("<img src='cid:logo' alt='Logo' width='128' height='128'/>")
                             .append("<H2>Вітаю! Вас зареєстровано на сайті профспілки Аеронавігація.</H2>")
@@ -257,7 +257,7 @@ public class AdminService implements AdminServiceInterface {
             try {
                 emailService.sendMimeMessage(userForUpdate.getUsername(),
                         "Встановлення рівня доступу Адміністратор",
-                        "andrewgubarenko@gmail.com",
+                        "airnavigation.tradeunion@gmail.com",
                         new StringBuilder()
                                 .append("<html><body>")
                                 .append("<img src='cid:logo' alt='Logo' width='128' height='128'/>")
@@ -283,7 +283,7 @@ public class AdminService implements AdminServiceInterface {
             try {
                 emailService.sendMimeMessage(userForUpdate.getUsername(),
                         "Встановлення рівня доступу Користувач",
-                        "andrewgubarenko@gmail.com",
+                        "airnavigation.tradeunion@gmail.com",
                         new StringBuilder()
                                 .append("<html><body>")
                                 .append("<img src='cid:logo' alt='Logo' width='128' height='128'/>")

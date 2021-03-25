@@ -167,13 +167,15 @@ class Questionnaire extends React.Component {
               Даю згоду на обробку <Link to="/personal_data_processing" style={{color: "black"}}>персональних даних</Link>
             </label>
           </div>
-          <div className="questionnaire_save_btn">
-            <img  id="sing__up__btn"
-                  src={SAVE_BTN}
-                  alt=""
-                  className="sing__up__btn"
-                  onClick={this.props.onClickSaveQuestionnaire}/>
+
+          <div style={{display: "flex", justifyContent: "flex-end", marginTop: "10px"}} >
+              <img  id="sing__up__btn"
+                    src={SAVE_BTN}
+                    alt=""
+                    className="quest__save__btn"
+                    onClick={this.props.onClickSaveQuestionnaire}/>
           </div>
+
           <div className="message_screen">
             {this.props.message}
           </div>
