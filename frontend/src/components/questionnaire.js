@@ -69,7 +69,7 @@ class Questionnaire extends React.Component {
               </span>
             </div>
             <div className="auth-container">
-              <input type="date" placeholder="дд.мм.рррр" className="terminal_input_quatro" onChange={this.props.onChangePassportIssueDate} value={this.props.passportDateIssue}/>
+              <input type="date" className="terminal_input_quatro" onChange={this.props.onChangePassportIssueDate} value={this.props.passportDateIssue} style={{minHeight: "25px"}}/>
               <span className="inscription" id="forgot_password_span">
                 Дата видачі
               </span>
@@ -84,7 +84,7 @@ class Questionnaire extends React.Component {
             </div>
           </div>
           <div className="questionnaire_interactive_control_panel_row" style={{display: this.props.isTermIntPassVisible}}>
-            <span>Термін дії: </span><input type="date" placeholder="дд.мм.рррр" className="questionnaire_terminal_input" onChange={this.props.onChangeTermIntPass} value={this.props.termInternationalPassport}/>
+            <span>Термін дії: </span><input type="date" className="questionnaire_terminal_input" onChange={this.props.onChangeTermIntPass} value={this.props.termInternationalPassport} style={{minHeight: "25px"}}/>
           </div>
           <div className="questionnaire_interactive_control_panel_row">
             <span>Ідентифікаційний код: </span><input className="questionnaire_terminal_input" onChange={this.props.onChangeIdentNumber} value={this.props.identNumber}/>
@@ -98,7 +98,7 @@ class Questionnaire extends React.Component {
               </span>
             </div>
             <div className="auth-container">
-              <input type="date" placeholder="дд.мм.рррр" className="questionnaire_terminal_input" onChange={this.props.onChangeEducationTerm} value={this.props.educationTerm}/>
+              <input type="date" className="questionnaire_terminal_input" onChange={this.props.onChangeEducationTerm} value={this.props.educationTerm} style={{minHeight: "25px"}}/>
               <span className="inscription" id="forgot_password_span">
                 Дата закінчення
               </span>
@@ -123,7 +123,7 @@ class Questionnaire extends React.Component {
             <span>Місце народження: </span><input className="questionnaire_terminal_input" onChange={this.props.onChangePlaceOfBirth} value={this.props.placeOfBirth}/>
           </div>
           <div className="questionnaire_interactive_control_panel_row">
-            <span>Дата народження: </span><input type="date" placeholder="дд.мм.рррр" className="questionnaire_terminal_input" onChange={this.props.onChangeBirthDate} value={this.props.birthDate}/>
+            <span>Дата народження: </span><input type="date" className="questionnaire_terminal_input" onChange={this.props.onChangeBirthDate} value={this.props.birthDate} style={{minHeight: "25px"}}/>
           </div>
           <div className="questionnaire_interactive_control_panel_row">
             <span>Адреса проживання (за паспортом): </span><input className="questionnaire_terminal_input" onChange={this.props.onChangePassportAddress}  value={this.props.passportAddress}/>
@@ -132,7 +132,7 @@ class Questionnaire extends React.Component {
             <span>Адреса проживання (фактична): </span><input className="questionnaire_terminal_input" onChange={this.props.onChangeActualAddress}  value={this.props.actualAddress}/>
           </div>
           <div className="questionnaire_interactive_control_panel_row">
-            <span>Дата працевлаштування в РСП: </span><input type="date" placeholder="дд.мм.рррр" className="questionnaire_terminal_input" onChange={this.props.onChangeEmploymentDate} value={this.props.employmentDate}/>
+            <span>Дата працевлаштування в РСП: </span><input type="date" className="questionnaire_terminal_input" onChange={this.props.onChangeEmploymentDate} value={this.props.employmentDate} style={{minHeight: "25px"}}/>
           </div>
           <div className="questionnaire_interactive_control_panel_row">
             <span>Загальний трудовий стаж (без освіти): </span><input className="questionnaire_terminal_input" onChange={this.props.onChangeSeniority} value={this.props.seniority}/>
