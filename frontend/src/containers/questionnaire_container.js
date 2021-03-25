@@ -113,7 +113,7 @@ class QuestionnaireContainer extends React.Component {
             </div>
             <div className="auth-container" style={{position: "relative"}}>
               <div id="close__btn" data-number={count} onClick={this.onClickRemoveChild} className="remove_child_btn">&#10006;</div>
-              <input type="date" data-number={count} className="questionnaire_terminal_input" onChange={this.onChangeChildBirth} value={child[1]}/>
+              <input type="date" placeholder="дд.мм.рррр" data-number={count} className="questionnaire_terminal_input" onChange={this.onChangeChildBirth} value={child[1]}/>
               <span className="inscription" id="forgot_password_span">
                 Дата народження
               </span>
@@ -298,7 +298,7 @@ class QuestionnaireContainer extends React.Component {
       </div>
       <div className="auth-container" style={{position: "relative"}}>
         <div id="close__btn" data-number={count} onClick={this.onClickRemoveChild} className="remove_child_btn">&#10006;</div>
-        <input type="date" data-number={count} className="questionnaire_terminal_input" onChange={this.onChangeChildBirth}/>
+        <input type="date" placeholder="дд.мм.рррр" data-number={count} className="questionnaire_terminal_input" onChange={this.onChangeChildBirth}/>
         <span className="inscription" id="forgot_password_span">
           Дата народження
         </span>
