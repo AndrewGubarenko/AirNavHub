@@ -169,11 +169,12 @@ class Questionnaire extends React.Component {
           </div>
 
           <div style={{display: "flex", justifyContent: "flex-end", marginTop: "10px"}} >
-              <img  id="sing__up__btn"
-                    src={SAVE_BTN}
+            <div>
+              <img  src={SAVE_BTN}
                     alt=""
                     className="quest__save__btn"
                     onClick={this.props.onClickSaveQuestionnaire}/>
+            </div>
           </div>
 
           <div className="message_screen">
