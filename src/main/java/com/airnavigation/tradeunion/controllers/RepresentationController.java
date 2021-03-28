@@ -31,6 +31,16 @@ public class RepresentationController {
         this.cryptographer = cryptographer;
     }
 
+    /**
+     * SSL checking
+     * @return String key
+     */
+
+    @GetMapping(path = "well-known/acme-challenge/aKkrljFloY-ZncDFkiuqwHnnf1WrtMg6a4P5F6s1KP0")
+    public String SSL() {
+        return "aKkrljFloY-ZncDFkiuqwHnnf1WrtMg6a4P5F6s1KP0.0H8dfftG8aFQp64KUmQ5_NJV4X4MN3fkA7OTYaEXu4w";
+    }
+
     @GetMapping(path = "/main")
     public ResponseEntity<RepresentationContainer> getRepresentation() {
         RepresentationContainer result = service.createOpenRepresentation();
