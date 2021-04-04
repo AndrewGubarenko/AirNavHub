@@ -10,6 +10,7 @@ import {setNews} from '../reducers/actions/newsAction';
 import {setFiles} from '../reducers/actions/fileAction';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
 import FilesContainer from "./file-container";
+import {Link} from "react-router-dom";
 
 let CryptoJS = require("crypto-js");
 
@@ -25,14 +26,61 @@ class AuthenticationContainer extends React.Component {
       passType: "password",
       borderColorEmail: "darkgrey",
       borderColorPassword: "darkgrey",
+      contOne: "",
+      contTwo: "",
       message:""
     };
+  }
+
+  componentDidMount() {
+    this.setConts();
+    window.addEventListener('resize', this.resize)
   }
 
   componentWillUnmount() {
     this.setState({email: ""});
     this.setState({password: ""});
     this.setState({rememberMe: false});
+    window.removeEventListener('resize', this.resize)
+  }
+
+  resize = () => {
+    this.setConts();
+  }
+
+  setConts = () => {
+      if (window.innerWidth >= 900) {
+        this.setState({contOne:  <div>
+                                        <label id="checkbox">
+                                          <input id="checkbox__input" type="checkbox" name="remember_me" checked={this.props.rememberMe} onChange={this.props.onChangeRememberMe}/>
+                                          <span className="inscription" id="checkbox__span">Запам'ятати мене</span>
+                                        </label>
+                                      </div>});
+        this.setState({contTwo:  <div>
+                                        <label id="forgot_password">
+                                          <span className="inscription" id="forgot_password_span">
+                                            <span>Забули пароль? </span>
+                                            <Link id="forgot_password_link" to="/restore_password">Тисніть сюди!</Link>
+                                          </span>
+                                        </label>
+                                      </div>});
+      } else {
+        this.setState({contOne:  <div>
+                                        <label id="forgot_password">
+                                          <span className="inscription" id="forgot_password_span">
+                                            <span>Забули пароль? </span>
+                                            <Link id="forgot_password_link" to="/restore_password">Тисніть сюди!</Link>
+                                          </span>
+                                        </label>
+                                      </div>});
+        this.setState({contTwo:  <div>
+            <label id="checkbox">
+              <input id="checkbox__input" type="checkbox" name="remember_me" checked={this.props.rememberMe} onChange={this.props.onChangeRememberMe}/>
+              <span className="inscription" id="checkbox__span">Запам'ятати мене</span>
+            </label>
+          </div>});
+      }
+
   }
 
   onChangeEmail = (event) => {
@@ -126,6 +174,7 @@ class AuthenticationContainer extends React.Component {
   }
 
   render() {
+
     return(
       <Authentication
         {...this.state}
