@@ -56,6 +56,14 @@ class MainPageContainer extends React.Component {
           } else {
             this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, false));
           }
+        } else {
+          userService.logout().then(() => {
+            this.setState({isBurgerChecked: false});
+            this.props.dispatch(setIsAuthenticated(false, null, false));
+            this.props.dispatch(setIsAuthContainerVisible("none"));
+            this.props.dispatch(setAdminDisplayMode("none"));
+            this.props.dispatch(setFiles(null, "none"));
+          }).then(() => this.props.history.push("/main"));
         }
       }).then(() => {
         this.setFilesContainer();
