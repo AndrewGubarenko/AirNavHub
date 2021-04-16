@@ -44,6 +44,7 @@ class MainPageContainer extends React.Component {
               alert("Халепа! Щось пішло не так.")
             }
           });
+          return;
         }
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
