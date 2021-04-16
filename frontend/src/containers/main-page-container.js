@@ -28,13 +28,13 @@ class MainPageContainer extends React.Component {
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).then((response) => {
-        console.log(response)
-        if(response.ok) {
-          response.json()
+      representationService.getFullMain(this.props.user.id).then((data) => {
+        console.log(data)
+        if(data.ok) {
+          return data.json();
         } else {
-          userService.logout().then(response => {
-            if(response.ok) {
+          userService.logout().then(resp => {
+            if(resp.ok) {
               this.setState({isBurgerChecked: false});
               this.props.dispatch(setIsAuthenticated(false, null, false));
               this.props.dispatch(setIsAuthContainerVisible("none"));
