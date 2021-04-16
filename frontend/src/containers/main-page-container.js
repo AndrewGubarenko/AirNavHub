@@ -28,12 +28,7 @@ class MainPageContainer extends React.Component {
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).catch((error) => {
-        console.log(error.response.status)
-        if(error.response.status==401){
-          console.log(error.response.status)
-        }
-      }).then((data) => {
+      representationService.getFullMain(this.props.user.id).then((data) => {
         console.log(data)
         if(data.ok) {
           return data.json();
@@ -45,6 +40,11 @@ class MainPageContainer extends React.Component {
             this.props.dispatch(setAdminDisplayMode("none"));
             this.props.dispatch(setFiles(null, "none"));
           }).then(() => this.props.history.push("/main"));
+        }
+      }).catch((error) => {
+        console.log(error.response.status)
+        if(error.response.status==401){
+          console.log(error.response.status)
         }
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
