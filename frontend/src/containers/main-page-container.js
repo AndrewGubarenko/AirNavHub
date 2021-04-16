@@ -28,11 +28,9 @@ class MainPageContainer extends React.Component {
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).then((data) => data.json()).catch((error) => {
-        console.log(error.response.status)
-        if(error.response.status===401){
-          console.log(error.response.data.error)
-        }
+      representationService.getFullMain(this.props.user.id).then((data) => {
+        console.log(data)
+        return data.json();
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
         this.props.dispatch(setFiles(representation.fileList, "block"));
