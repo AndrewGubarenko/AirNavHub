@@ -39,7 +39,7 @@ class MainPageContainer extends React.Component {
             this.props.dispatch(setIsAuthContainerVisible("none"));
             this.props.dispatch(setAdminDisplayMode("none"));
             this.props.dispatch(setFiles(null, "none"));
-          }).then(() => this.props.reload());
+          }).then(() => this.props.history.push("/main"));
         }
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
