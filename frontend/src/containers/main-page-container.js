@@ -29,7 +29,7 @@ class MainPageContainer extends React.Component {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
       representationService.getFullMain(this.props.user.id).then((data) => {
-        console.log(data)
+        alert(data)
         if(data.ok) {
           return data.json();
         } else {
