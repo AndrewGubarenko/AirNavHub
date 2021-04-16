@@ -25,10 +25,10 @@ class MainPageContainer extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).then((data) => {
+      await representationService.getFullMain(this.props.user.id).then((data) => {
         if(data.ok) {
           return data.json();
         } else {
