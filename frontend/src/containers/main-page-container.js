@@ -7,11 +7,12 @@ import AuthenticationContainer from './authentication-container';
 import {connect} from 'react-redux';
 import {setNews} from '../reducers/actions/newsAction';
 import {setFiles} from '../reducers/actions/fileAction';
-import {representationService} from '../app-context/context';
+import {representationService, userService} from '../app-context/context';
 import {setToMainDisplayMode} from '../reducers/actions/OnMainPageAction';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
 import {setIsAuthenticated} from '../reducers/actions/userAction';
 import {setAdminDisplayMode} from '../reducers/actions/AdminAction';
+import {setIsAuthContainerVisible} from "../reducers/actions/AuthContainerAction";
 
 class MainPageContainer extends React.Component {
 
@@ -27,7 +28,23 @@ class MainPageContainer extends React.Component {
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).then((data) =>  data.json()).then(representation => {
+      representationService.getFullMain(this.props.user.id).then((response) => {
+        if(response.ok) {
+          response.json()
+        } else {
+          userService.logout().then(response => {
+            if(response.ok) {
+              this.setState({isBurgerChecked: false});
+              this.props.dispatch(setIsAuthenticated(false, null, false));
+              this.props.dispatch(setIsAuthContainerVisible("none"));
+              this.props.dispatch(setAdminDisplayMode("none"));
+              this.props.dispatch(setFiles(null, "none"));
+            } else {
+              alert("Халепа! Щось пішло не так.")
+            }
+          });
+        }
+      }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
         this.props.dispatch(setFiles(representation.fileList, "block"));
         if(representation.authorizedUser){
@@ -37,8 +54,6 @@ class MainPageContainer extends React.Component {
           } else {
             this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, false));
           }
-        } else {
-          alert("login immediately!!")
         }
       }).then(() => {
         this.setFilesContainer();
