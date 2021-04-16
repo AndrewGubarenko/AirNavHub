@@ -26,7 +26,45 @@ class MainPageContainer extends React.Component {
   }
 
   componentDidMount() {
-    
+    this.props.dispatch(setToMainDisplayMode("none"));
+    if(this.props.isAuthenticated) {
+      representationService.getFullMain(this.props.user.id).then((data) => {
+        if(data.ok) {
+          return data.json();
+        } else {
+          userService.logout().then(() => {
+            this.setState({isBurgerChecked: false});
+            this.props.dispatch(setIsAuthenticated(false, null, false));
+            this.props.dispatch(setIsAuthContainerVisible("none"));
+            this.props.dispatch(setAdminDisplayMode("none"));
+            this.props.dispatch(setFiles(null, "none"));
+          });
+        }
+      }).then(representation => {
+        this.props.dispatch(setNews(representation.newsList));
+        this.props.dispatch(setFiles(representation.fileList, "block"));
+        if(representation.authorizedUser){
+          if(representation.authorizedUser.roles.includes("ADMINISTRATOR")) {
+            this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, true));
+            this.props.dispatch(setAdminDisplayMode("block"));
+          } else {
+            this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, false));
+          }
+        }
+      }).then(() => {
+        this.setFilesContainer();
+        this.setNews();
+      });
+    } else {
+      representationService.getTruncatedMain().then((data) =>  data.json()).then(representation => {
+        this.props.dispatch(setNews(representation.newsList));
+        this.props.dispatch(setFiles(null, "none"));
+      }).then(() => {
+        this.setNews();
+      });
+    }
+    this.setState({filesVisibility: this.props.filesVisibility})
+    this.props.dispatch(setSpinnerVisibility("none"));
   }
 
   setNews = () => {
