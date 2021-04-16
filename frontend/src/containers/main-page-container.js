@@ -33,18 +33,13 @@ class MainPageContainer extends React.Component {
         if(data.ok) {
           return data.json();
         } else {
-          userService.logout().then(resp => {
-            if(resp.ok) {
-              this.setState({isBurgerChecked: false});
-              this.props.dispatch(setIsAuthenticated(false, null, false));
-              this.props.dispatch(setIsAuthContainerVisible("none"));
-              this.props.dispatch(setAdminDisplayMode("none"));
-              this.props.dispatch(setFiles(null, "none"));
-            } else {
-              alert("Халепа! Щось пішло не так.")
-            }
-          });
-          return;
+          userService.logout().then(() => {
+            this.setState({isBurgerChecked: false});
+            this.props.dispatch(setIsAuthenticated(false, null, false));
+            this.props.dispatch(setIsAuthContainerVisible("none"));
+            this.props.dispatch(setAdminDisplayMode("none"));
+            this.props.dispatch(setFiles(null, "none"));
+          }).then(() => this.props.reload());
         }
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
