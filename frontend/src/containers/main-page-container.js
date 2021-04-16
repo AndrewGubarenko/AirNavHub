@@ -27,12 +27,22 @@ class MainPageContainer extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(setToMainDisplayMode("none"));
-    console.log(this.props.isAuthenticated)
     if(this.props.isAuthenticated) {
-      representationService.getFullMain(this.props.user.id).then((data) => {
-        console.log(data)
-        return data.json();
-      }).then(representation => {
+      representationService.getFullMain(this.props.user.id).catch((error) => {
+        if(error.status === 401) {
+          userService.logout().then(response => {
+            if(response.ok) {
+              this.setState({isBurgerChecked: false});
+              this.props.dispatch(setIsAuthenticated(false, null, false));
+              this.props.dispatch(setIsAuthContainerVisible("none"));
+              this.props.dispatch(setAdminDisplayMode("none"));
+              this.props.dispatch(setFiles(null, "none"));
+            } else {
+              alert("Халепа! Щось пішло не так.")
+            }
+          });
+        }
+      }).then((data) => data.json()).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
         this.props.dispatch(setFiles(representation.fileList, "block"));
         if(representation.authorizedUser){
