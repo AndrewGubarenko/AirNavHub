@@ -29,8 +29,8 @@ class MainPageContainer extends React.Component {
     this.props.dispatch(setToMainDisplayMode("none"));
     if(this.props.isAuthenticated) {
       representationService.getFullMain(this.props.user.id).then((data) => {
-        console.log(data);
-        if(data.ok) {
+        console.log(data)
+        if(data.status !== 401) {
           return data.json();
         } else {
           userService.logout().then(() => {
@@ -40,6 +40,11 @@ class MainPageContainer extends React.Component {
             this.props.dispatch(setAdminDisplayMode("none"));
             this.props.dispatch(setFiles(null, "none"));
           }).then(() => this.props.history.push("/main"));
+        }
+      }).catch(function (error) {
+        console.log(error.response.status)
+        if(error.response.status==401){
+          console.log(error.response.data.error)
         }
       }).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
@@ -57,10 +62,7 @@ class MainPageContainer extends React.Component {
         this.setNews();
       });
     } else {
-      representationService.getTruncatedMain().then((data) => {
-        console.log(data);
-        return data.json();
-      }).then(representation => {
+      representationService.getTruncatedMain().then((data) =>  data.json()).then(representation => {
         this.props.dispatch(setNews(representation.newsList));
         this.props.dispatch(setFiles(null, "none"));
       }).then(() => {
