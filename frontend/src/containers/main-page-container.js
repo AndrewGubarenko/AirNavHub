@@ -37,6 +37,8 @@ class MainPageContainer extends React.Component {
           } else {
             this.props.dispatch(setIsAuthenticated(true, representation.authorizedUser, false));
           }
+        } else {
+          alert("login immediately!!")
         }
       }).then(() => {
         this.setFilesContainer();
