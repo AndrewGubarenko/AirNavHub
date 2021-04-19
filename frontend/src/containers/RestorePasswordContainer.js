@@ -32,7 +32,7 @@ class RestorePasswordContainer extends React.Component {
       this.setState({borderColorRestorePass: "red"});
     } else {
       this.props.dispatch(setSpinnerVisibility("inline-block"));
-      await representationService.restorePassword(this.cipherThis(this.state.email)).then(response => {
+      await representationService.restorePassword(this.state.email).then(response => {
         response.text().then(message => {
           this.setState({email: ""})
           this.setState({message: message});
@@ -46,7 +46,7 @@ class RestorePasswordContainer extends React.Component {
     this.props.history.push("/main")
   }
 
-  cipherThis = (text) => {
+/*  cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -57,7 +57,7 @@ class RestorePasswordContainer extends React.Component {
     } else {
       return text;
     }
-  }
+  }*/
 
   render() {
     return(
