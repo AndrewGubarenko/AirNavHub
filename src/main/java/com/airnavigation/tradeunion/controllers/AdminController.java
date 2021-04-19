@@ -5,7 +5,7 @@ import com.airnavigation.tradeunion.domain.File;
 import com.airnavigation.tradeunion.domain.News;
 import com.airnavigation.tradeunion.domain.PlainDomain.SearchRequest;
 import com.airnavigation.tradeunion.domain.User;
-import com.airnavigation.tradeunion.security.Cryptographer;
+//import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.FileService;
 import com.airnavigation.tradeunion.services.NewsService;
 import com.airnavigation.tradeunion.services.interfaces.AdminServiceInterface;
@@ -28,17 +28,17 @@ public class AdminController {
     private final AdminServiceInterface adminService;
     private final FileService fileService;
     private final NewsService newsService;
-    private final Cryptographer cryptographer;
+    //private final Cryptographer cryptographer;
 
     @Autowired
     public AdminController(AdminServiceInterface adminService,
                            FileService fileService,
-                           NewsService newsService,
-                           Cryptographer cryptographer) {
+                           NewsService newsService/*,
+                           Cryptographer cryptographer*/) {
         this.adminService = adminService;
         this.fileService = fileService;
         this.newsService = newsService;
-        this.cryptographer = cryptographer;
+        //this.cryptographer = cryptographer;
     }
 
     /**
@@ -49,8 +49,8 @@ public class AdminController {
     public ResponseEntity<Set<User>> updateDatabaseXLSX (@RequestBody byte[] file) throws IOException {
         Set<User> response = adminService.updateDB(file, "xlsx");
         response.forEach(user -> {
-            String encodedUsername = cryptographer.encode(user.getUsername());
-            user.setUsername(encodedUsername);
+            /*String encodedUsername = cryptographer.encode(user.getUsername());
+            user.setUsername(encodedUsername);*/
             user.setPassword("");
             user.setQuestionnaire(null);
         });
@@ -61,8 +61,8 @@ public class AdminController {
     public ResponseEntity<Set<User>> updateDatabaseXLS (@RequestBody byte[] file) throws IOException {
         Set<User> response = adminService.updateDB(file, "xls");
         response.forEach(user -> {
-            String encodedUsername = cryptographer.encode(user.getUsername());
-            user.setUsername(encodedUsername);
+            /*String encodedUsername = cryptographer.encode(user.getUsername());
+            user.setUsername(encodedUsername);*/
             user.setPassword("");
             user.setQuestionnaire(null);
         });
@@ -91,11 +91,11 @@ public class AdminController {
 
     @PostMapping(path = "/user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        String decodedUsername = cryptographer.decode(user.getUsername());
-        user.setUsername(decodedUsername);
+        /*String decodedUsername = cryptographer.decode(user.getUsername());
+        user.setUsername(decodedUsername);*/
         User response = adminService.createUser(user);
-        String encodedUsername = cryptographer.encode(response.getUsername());
-        response.setUsername(encodedUsername);
+        /*String encodedUsername = cryptographer.encode(response.getUsername());
+        response.setUsername(encodedUsername);*/
         response.setPassword("");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -104,8 +104,8 @@ public class AdminController {
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> response = adminService.getListOfUsers();
         response.forEach(user -> {
-            String encodedUsername = cryptographer.encode(user.getUsername());
-            user.setUsername(encodedUsername);
+            /*String encodedUsername = cryptographer.encode(user.getUsername());
+            user.setUsername(encodedUsername);*/
             user.setPassword("");
             user.setQuestionnaire(null);
         });
@@ -116,8 +116,8 @@ public class AdminController {
     public ResponseEntity<List<User>> getUser(@RequestBody SearchRequest request) {
         List<User> response = adminService.findUser(request);
         response.forEach(user -> {
-            String encodedUsername = cryptographer.encode(user.getUsername());
-            user.setUsername(encodedUsername);
+            /*String encodedUsername = cryptographer.encode(user.getUsername());
+            user.setUsername(encodedUsername);*/
             user.setPassword("");
             user.setQuestionnaire(null);
         });
@@ -127,11 +127,11 @@ public class AdminController {
     @PutMapping(path = "/user/{id}")
     @SuppressWarnings("Duplicates")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User user) {
-        String decodedUsername = cryptographer.decode(user.getUsername());
-        user.setUsername(decodedUsername);
+        /*String decodedUsername = cryptographer.decode(user.getUsername());
+        user.setUsername(decodedUsername);*/
         User response = adminService.updateUser(id, user);
-        String encodedUsername = cryptographer.encode(response.getUsername());
-        response.setUsername(encodedUsername);
+        /*String encodedUsername = cryptographer.encode(response.getUsername());
+        response.setUsername(encodedUsername);*/
         response.setPassword("");
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

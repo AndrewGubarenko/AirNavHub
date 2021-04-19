@@ -1,11 +1,11 @@
 import React from 'react';
 import ChangePassword from '../components/changePassword';
-import {cipherService, userService} from '../app-context/context';
+import {/*cipherService, */userService} from '../app-context/context';
 import {setToMainDisplayMode} from '../reducers/actions/OnMainPageAction';
 import {connect} from 'react-redux';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
 
-let CryptoJS = require("crypto-js");
+/*let CryptoJS = require("crypto-js");*/
 
 class ChangePasswordContainer extends React.Component {
 
@@ -64,8 +64,8 @@ class ChangePasswordContainer extends React.Component {
       this.setState({borderColorNewPass: "red"});
     } else {
       this.props.dispatch(setSpinnerVisibility("inline-block"));
-      let correctPassData = {currentPassword: this.cipherThis(this.state.passData.currentPassword),
-                             newPassword: this.cipherThis(this.state.passData.newPassword)}
+      let correctPassData = {currentPassword: this.state.passData.currentPassword,
+                             newPassword: this.state.passData.newPassword}
       await userService.changePassword(correctPassData, this.props.user.id).then(response => {
         response.text().then(message => {
           this.setState({message: message});
@@ -99,7 +99,7 @@ class ChangePasswordContainer extends React.Component {
     this.setState({confirmPassType: "password"});
   }
 
-  cipherThis = (text) => {
+/*  cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -110,7 +110,7 @@ class ChangePasswordContainer extends React.Component {
     } else {
       return text;
     }
-  }
+  }*/
 
   render() {
     return(

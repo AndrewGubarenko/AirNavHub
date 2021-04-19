@@ -5,9 +5,9 @@ import {setToMainDisplayMode} from '../reducers/actions/OnMainPageAction';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
 import {connect} from 'react-redux';
 import {scroller} from 'react-scroll';
-import {cipherService} from '../app-context/context';
+//import {cipherService} from '../app-context/context';
 
-let CryptoJS = require("crypto-js");
+/*let CryptoJS = require("crypto-js");*/
 
 class AdminPageContainer extends React.Component {
 
@@ -244,13 +244,13 @@ class AdminPageContainer extends React.Component {
     } else {
       this.props.dispatch(setSpinnerVisibility("inline-block"));
       let user = this.state.user;
-      let encryptedUsername = this.cipherThis(user.username);
-      user.username = encryptedUsername;
+      /*let encryptedUsername = this.cipherThis(user.username);
+      user.username = encryptedUsername;*/
       await adminService.createUser(user).then(response => {
         if(response.ok) {
           return response.json().then(data => {
-            let username = this.decipherThis(data.username);
-            data.username = username;
+            /*let username = this.decipherThis(data.username);
+            data.username = username;*/
             this.setState({user: data})
             this.setState({userControlPanelDisplay: "none"});
             this.setState({userUpdateControlPanelDisplay: "block"});
@@ -278,13 +278,13 @@ class AdminPageContainer extends React.Component {
     } else {
       this.props.dispatch(setSpinnerVisibility("inline-block"));
       let user = this.state.user;
-      let username = this.cipherThis(this.state.user.username);
-      user.username = username;
+      /*let username = this.cipherThis(this.state.user.username);
+      user.username = username;*/
       await adminService.updateUser(user).then(response => {
         if(response.ok) {
           return response.json().then(data => {
-            let username = this.decipherThis(data.username);
-            data.username = username;
+            /*let username = this.decipherThis(data.username);
+            data.username = username;*/
             this.setState({selected: data.gender});
             if(data.roles.includes("ADMINISTRATOR")) {
               this.setState({checked: true});
@@ -671,8 +671,8 @@ class AdminPageContainer extends React.Component {
           <div>
               {
                 list.map(item => {
-                  let decryptedUsername = this.decipherThis(item.username);
-                  item.username = decryptedUsername;
+                  /*let decryptedUsername = this.decipherThis(item.username);
+                  item.username = decryptedUsername;*/
                   return(
                     <div key={item.id} className="admin_result_list_item" style={{cursor: "pointer"}} onClick={async() => {
                         await this.setState({user: item});
@@ -1047,7 +1047,7 @@ class AdminPageContainer extends React.Component {
     this.props.dispatch(setSpinnerVisibility("none"));
   }
 /*Reports functions*/
-  cipherThis = (text) => {
+  /*cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -1059,9 +1059,9 @@ class AdminPageContainer extends React.Component {
     } else {
       return text;
     }
-  }
+  }*/
 
-  decipherThis = (encryptedText) => {
+  /*decipherThis = (encryptedText) => {
     if(encryptedText) {
       let decodedText = atob(encryptedText);
       let aesString = decodedText.split("::");
@@ -1071,7 +1071,7 @@ class AdminPageContainer extends React.Component {
     } else {
       return encryptedText;
     }
-  }
+  }*/
 
   render() {
     return(

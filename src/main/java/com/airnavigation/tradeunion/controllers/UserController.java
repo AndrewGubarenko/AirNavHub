@@ -4,7 +4,7 @@ import com.airnavigation.tradeunion.domain.PlainDomain.ChangePassword;
 import com.airnavigation.tradeunion.domain.PlainDomain.Feedback;
 import com.airnavigation.tradeunion.domain.Questionnaire;
 import com.airnavigation.tradeunion.domain.User;
-import com.airnavigation.tradeunion.security.Cryptographer;
+//import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,21 +22,21 @@ import java.util.UUID;
 public class UserController {
 
     private final UserServiceInterface userService;
-    private final Cryptographer cryptographer;
+    //private final Cryptographer cryptographer;
 
     @Autowired
-    public UserController (UserServiceInterface userService,
-                           Cryptographer cryptographer) {
+    public UserController (UserServiceInterface userService/*,
+                           Cryptographer cryptographer*/) {
         this.userService = userService;
-        this.cryptographer = cryptographer;
+        //this.cryptographer = cryptographer;
     }
 
     @GetMapping(path = "/{id}")
     @ResponseBody
     public ResponseEntity<User> getUser (@PathVariable UUID id) {
         User response = userService.getUser(id);
-        String username = cryptographer.encode(response.getUsername());
-        response.setUsername(username);
+        /*String username = cryptographer.encode(response.getUsername());
+        response.setUsername(username);*/
         response.setPassword("");
         response.setQuestionnaire(null);
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -46,8 +46,8 @@ public class UserController {
     public ResponseEntity<String> changePassword(@RequestBody ChangePassword changePassword,
                                                  @PathVariable UUID id) {
         ChangePassword decodedChangePassword = new ChangePassword();
-        decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
-        decodedChangePassword.setNewPassword(cryptographer.decode(changePassword.getNewPassword()));
+/*        decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
+        decodedChangePassword.setNewPassword(cryptographer.decode(changePassword.getNewPassword()));*/
         return ResponseEntity.status(HttpStatus.OK).body(userService.changePassword(decodedChangePassword, id));
     }
 
@@ -56,8 +56,8 @@ public class UserController {
      */
     @PostMapping(path = "/feedback", consumes = "application/json")
     public ResponseEntity<String> getFeedback (@RequestBody Feedback feedback) {
-        String decodedFrom = cryptographer.decode(feedback.getFrom());
-        feedback.setFrom(decodedFrom);
+        /*String decodedFrom = cryptographer.decode(feedback.getFrom());
+        feedback.setFrom(decodedFrom);*/
         String result = userService.receiveEmailFromUser(feedback);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

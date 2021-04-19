@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {setToMainDisplayMode} from '../reducers/actions/OnMainPageAction';
 import {userService} from '../app-context/context';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
-import {cipherService} from '../app-context/context';
+/*import {cipherService} from '../app-context/context';*/
 
-let CryptoJS = require("crypto-js");
+/*let CryptoJS = require("crypto-js");*/
 let count = 0;
 
 class FeedbackContainer extends React.Component {
@@ -102,9 +102,9 @@ class FeedbackContainer extends React.Component {
       let jsonFiles = this.state.files.map(file => {
         return(file);
       });
-      let cipheredFrom = this.cipherThis(this.state.from);
+      /*let cipheredFrom = this.cipherThis(this.state.from);*/
       let feedback = {
-        from: cipheredFrom,
+        from: this.state.from,
         theme: this.state.theme,
         body: this.state.body,
         files: jsonFiles
@@ -117,7 +117,7 @@ class FeedbackContainer extends React.Component {
     }
   }
 
-  cipherThis = (text) => {
+/*  cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -128,7 +128,7 @@ class FeedbackContainer extends React.Component {
     } else {
       return text;
     }
-  }
+  }*/
 
   render() {
     return(

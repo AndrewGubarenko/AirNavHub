@@ -23,6 +23,6 @@ if(process.env.NODE_ENV === "development") {
 const userService = new UserService(startUrl);
 const adminService = new AdminService(startUrl);
 const representationService = new RepresentationService(startUrl);
-const cipherService = new AesUtil(128, 125);
+//const cipherService = new AesUtil(128, 125);
 
-export {representationService, userService, adminService, cipherService, store};
+export {representationService, userService, adminService/*, cipherService*/, store};

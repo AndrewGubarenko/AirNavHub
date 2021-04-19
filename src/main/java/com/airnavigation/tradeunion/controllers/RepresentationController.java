@@ -1,7 +1,7 @@
 package com.airnavigation.tradeunion.controllers;
 
 import com.airnavigation.tradeunion.domain.PlainDomain.RepresentationContainer;
-import com.airnavigation.tradeunion.security.Cryptographer;
+//import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.RepresentationService;
 import com.airnavigation.tradeunion.services.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;

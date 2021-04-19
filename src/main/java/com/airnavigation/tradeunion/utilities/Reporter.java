@@ -3,7 +3,7 @@ package com.airnavigation.tradeunion.utilities;
 import com.airnavigation.tradeunion.Repositories.QuestionnaireRepository;
 import com.airnavigation.tradeunion.domain.Gender;
 import com.airnavigation.tradeunion.domain.Questionnaire;
-import com.airnavigation.tradeunion.security.Cryptographer;
+//import com.airnavigation.tradeunion.security.Cryptographer;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ import java.util.Map;
 public class Reporter {
 
     private final QuestionnaireRepository questionnaireRepository;
-    private final Cryptographer cryptographer;
+    //private final Cryptographer cryptographer;
 
     @Autowired
-    public Reporter (QuestionnaireRepository questionnaireRepository,
-                     Cryptographer cryptographer) {
+    public Reporter (QuestionnaireRepository questionnaireRepository/*,
+                     Cryptographer cryptographer*/) {
         this.questionnaireRepository = questionnaireRepository;
-        this.cryptographer = cryptographer;
+        //this.cryptographer = cryptographer;
     }
 
     @Transactional
@@ -145,96 +145,96 @@ public class Reporter {
             memberNumber.setCellValue(rowNumber);
 
             Cell ukrainianName = row.createCell(1);
-            ukrainianName.setCellValue(cryptographer.decode(questionnaire.getNameUkrainian()));
+            ukrainianName.setCellValue(questionnaire.getNameUkrainian());
 
             Cell englishName = row.createCell(2);
-            englishName.setCellValue(cryptographer.decode(questionnaire.getNameEnglish()));
+            englishName.setCellValue(questionnaire.getNameEnglish());
 
             Cell placePositionShift = row.createCell(3);
-            placePositionShift.setCellValue(cryptographer.decode(questionnaire.getFacility())
-                    + ", " + cryptographer.decode(questionnaire.getPosition())
-                    + ", " + cryptographer.decode(questionnaire.getShift()));
+            placePositionShift.setCellValue(questionnaire.getFacility()
+                    + ", " + questionnaire.getPosition()
+                    + ", " + questionnaire.getShift());
 
             Cell passportNumber = row.createCell(4);
-            passportNumber.setCellValue(cryptographer.decode(questionnaire.getPassportNumber()));
+            passportNumber.setCellValue(questionnaire.getPassportNumber());
 
             Cell passportIssue = row.createCell(5);
-            passportIssue.setCellValue(cryptographer.decode(questionnaire.getPassportIssue()));
+            passportIssue.setCellValue(questionnaire.getPassportIssue());
 
             Cell passportDateIssue = row.createCell(6);
             passportDateIssue.setCellStyle(dateStyle);
-            passportDateIssue.setCellValue(cryptographer.decode(questionnaire.getPassportDateIssue()));
+            passportDateIssue.setCellValue(questionnaire.getPassportDateIssue());
 
             Cell doesHaveInternationalPassport = row.createCell(7);
             Cell termInternationalPassport = row.createCell(8);
-            if (cryptographer.decode(questionnaire.getDoesHaveInternationalPassport()).equals("true")) {
+            if (questionnaire.getDoesHaveInternationalPassport().equals("true")) {
                 doesHaveInternationalPassport.setCellValue("Маю");
                 termInternationalPassport.setCellStyle(dateStyle);
-                termInternationalPassport.setCellValue(cryptographer.decode(questionnaire.getTermInternationalPassport()));
+                termInternationalPassport.setCellValue(questionnaire.getTermInternationalPassport());
             } else {
                 doesHaveInternationalPassport.setCellValue("Не маю");
                 termInternationalPassport.setCellValue("");
             }
 
             Cell identNumber = row.createCell(9);
-            identNumber.setCellValue(cryptographer.decode(questionnaire.getIdentNumber()));
+            identNumber.setCellValue(questionnaire.getIdentNumber());
 
             Cell education = row.createCell(10);
-            education.setCellValue(cryptographer.decode(questionnaire.getEducation()));
+            education.setCellValue(questionnaire.getEducation());
 
             Cell educationTerm = row.createCell(11);
             educationTerm.setCellStyle(dateStyle);
-            educationTerm.setCellValue(cryptographer.decode(questionnaire.getEducationTerm()));
+            educationTerm.setCellValue(questionnaire.getEducationTerm());
 
             Cell email = row.createCell(12);
             email.setCellValue(questionnaire.getUser().getUsername());
 
             Cell homePhone = row.createCell(13);
-            homePhone.setCellValue(cryptographer.decode(questionnaire.getHomePhone()));
+            homePhone.setCellValue(questionnaire.getHomePhone());
 
             Cell mobilePhone = row.createCell(14);
-            mobilePhone.setCellValue(cryptographer.decode(questionnaire.getMobilePhone()));
+            mobilePhone.setCellValue(questionnaire.getMobilePhone());
 
             Cell userPlaceOfBirth = row.createCell(15);
-            userPlaceOfBirth.setCellValue(cryptographer.decode(questionnaire.getPlaceOfBirth()));
+            userPlaceOfBirth.setCellValue(questionnaire.getPlaceOfBirth());
 
             Cell birthDate = row.createCell(16);
             birthDate.setCellStyle(dateStyle);
-            birthDate.setCellValue(cryptographer.decode(questionnaire.getBirthDate()));
+            birthDate.setCellValue(questionnaire.getBirthDate());
 
             Cell passportAddress = row.createCell(17);
-            passportAddress.setCellValue(cryptographer.decode(questionnaire.getPassportAddress()));
+            passportAddress.setCellValue(questionnaire.getPassportAddress());
 
             Cell actualAddress = row.createCell(18);
-            actualAddress.setCellValue(cryptographer.decode(questionnaire.getActualAddress()));
+            actualAddress.setCellValue(questionnaire.getActualAddress());
 
             Cell employmentDate = row.createCell(19);
             employmentDate.setCellStyle(dateStyle);
-            employmentDate.setCellValue(cryptographer.decode(questionnaire.getEmploymentDate()));
+            employmentDate.setCellValue(questionnaire.getEmploymentDate());
 
             Cell seniority = row.createCell(20);
-            seniority.setCellValue(cryptographer.decode(questionnaire.getSeniority()));
+            seniority.setCellValue(questionnaire.getSeniority());
 
             Cell isMarried = row.createCell(21);
-            if (cryptographer.decode(questionnaire.getIsMarried()).equals("true")) {
+            if (questionnaire.getIsMarried().equals("true")) {
                 isMarried.setCellValue(questionnaire.getUser().getGender().equals(Gender.MALE) ? "Одружений" : "Заміжня");
             } else {
                 isMarried.setCellValue(questionnaire.getUser().getGender().equals(Gender.MALE) ? "Неодружений" : "Незаміжня");
             }
 
             Cell familyComposition = row.createCell(22);
-            familyComposition.setCellValue(cryptographer.decode(questionnaire.getFamilyComposition()));
+            familyComposition.setCellValue(questionnaire.getFamilyComposition());
 
             Cell children = row.createCell(23);
             StringBuilder childrenCell = new StringBuilder();
-            questionnaire.getChildren().forEach((childName, childDate) -> childrenCell.append(cryptographer.decode(childName))
+            questionnaire.getChildren().forEach((childName, childDate) -> childrenCell.append(childName)
                     .append(": ")
-                    .append(cryptographer.decode(childDate))
+                    .append(childDate)
                     .append("; "));
             children.setCellValue(childrenCell.toString());
 
             Cell additionalInformation = row.createCell(24);
-            additionalInformation.setCellValue(cryptographer.decode(questionnaire.getAdditionalInformation()));
+            additionalInformation.setCellValue(questionnaire.getAdditionalInformation());
 
             Iterator<Cell> dataCellIterator = row.cellIterator();
             while (dataCellIterator.hasNext()) {
@@ -335,7 +335,7 @@ public class Reporter {
             if (questionnaire.getNameUkrainian() == null || questionnaire.getNameUkrainian().equals("")) {
                 name = questionnaire.getUser().getLastName() + " " + questionnaire.getUser().getFirstName();
             } else {
-                name = cryptographer.decode(questionnaire.getNameUkrainian());
+                name = questionnaire.getNameUkrainian();
             }
             Cell parentName = row.createCell(1);
             parentName.setCellValue(name);
@@ -352,9 +352,9 @@ public class Reporter {
                 tableDataStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
                 childName.setCellStyle(tableDataStyle);
                 sheet.autoSizeColumn(childName.getColumnIndex());
-                childName.setCellValue(new StringBuilder().append(cryptographer.decode(entry.getKey()))
+                childName.setCellValue(new StringBuilder().append(entry.getKey())
                         .append(": ")
-                        .append(cryptographer.decode(entry.getValue()))
+                        .append(entry.getValue())
                         .append("; ")
                         .toString());
                 Cell signature = row.createCell(3);
