@@ -45,10 +45,10 @@ public class UserController {
     @PutMapping(path = "/{id}/password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePassword changePassword,
                                                  @PathVariable UUID id) {
-        ChangePassword decodedChangePassword = new ChangePassword();
-/*        decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
+/*        ChangePassword decodedChangePassword = new ChangePassword();
+        decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
         decodedChangePassword.setNewPassword(cryptographer.decode(changePassword.getNewPassword()));*/
-        return ResponseEntity.status(HttpStatus.OK).body(userService.changePassword(decodedChangePassword, id));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.changePassword(changePassword, id));
     }
 
     /**
