@@ -5,6 +5,7 @@ import com.airnavigation.tradeunion.Repositories.UserRepository;
 import com.airnavigation.tradeunion.domain.PlainDomain.ChangePassword;
 import com.airnavigation.tradeunion.domain.PlainDomain.Feedback;
 import com.airnavigation.tradeunion.domain.Questionnaire;
+import com.airnavigation.tradeunion.domain.Role;
 import com.airnavigation.tradeunion.domain.User;
 import com.airnavigation.tradeunion.exceptions.EmptyDataFieldsException;
 //import com.airnavigation.tradeunion.security.Cryptographer;
@@ -117,7 +118,12 @@ public class UserService implements UserServiceInterface {
         StringBuilder response = new StringBuilder();
         if(foundUserOpt.isPresent()) {
             User user = foundUserOpt.get();
-            String password = passwordGenerator.generateTemporaryPassword(15);
+            String password;
+            if(user.getRoles().contains(Role.ADMINISTRATOR)) {
+                password = passwordGenerator.generateTemporaryPassword(30);
+            } else {
+                password = passwordGenerator.generateTemporaryPassword(15);
+            }
             user.setPassword(passwordEncoder.encode(password));
             userRepository.save(user);
             try {
