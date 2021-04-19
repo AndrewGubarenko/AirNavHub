@@ -30,8 +30,8 @@ public class AuthenticationProviderImplementation implements AuthenticationProvi
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        String username = authentication.getName().toLowerCase();
-        String password = authentication.getCredentials().toString();
+        String username = cryptographer.decode(authentication.getName()).toLowerCase();
+        String password = cryptographer.decode(authentication.getCredentials().toString());
 
         if(userService == null) {
             LOGGER.error("AUTHENTICATION PROVIDER: User service is null");

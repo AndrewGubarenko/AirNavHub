@@ -51,6 +51,6 @@ public class RepresentationController {
 
     @PutMapping(path = "/password")
     public ResponseEntity<String> resetPassword(@RequestBody String email) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.resetPassword(email));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.resetPassword(cryptographer.decode(email)));
     }
 }
