@@ -5,14 +5,14 @@ import {setIsAuthenticated} from '../reducers/actions/userAction';
 import {setAdminDisplayMode} from '../reducers/actions/AdminAction';
 import {setIsAuthContainerVisible} from '../reducers/actions/AuthContainerAction';
 import {animateScroll} from 'react-scroll';
-import {cipherService, userService} from '../app-context/context';
+import {/*cipherService, */userService} from '../app-context/context';
 import {setNews} from '../reducers/actions/newsAction';
 import {setFiles} from '../reducers/actions/fileAction';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
 import FilesContainer from "./file-container";
 import {Link} from "react-router-dom";
 
-let CryptoJS = require("crypto-js");
+//let CryptoJS = require("crypto-js");
 
 class AuthenticationContainer extends React.Component {
 
@@ -108,8 +108,8 @@ class AuthenticationContainer extends React.Component {
       this.setState({borderColorPassword: "red"});
     } else {
       this.props.dispatch(setSpinnerVisibility("inline-block"));
-      let user_object = {username: this.cipherThis(this.state.email),
-                         password: this.cipherThis(this.state.password),
+      let user_object = {username: this.state.email,
+                         password: this.state.password,
                          remember_me: this.state.rememberMe}
       userService.authenticate(user_object).then(response => {
         if(response.redirected && response.ok) {
@@ -160,7 +160,7 @@ class AuthenticationContainer extends React.Component {
     this.setState({passType: "password"});
   }
 
-  cipherThis = (text) => {
+/*  cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -171,7 +171,7 @@ class AuthenticationContainer extends React.Component {
     } else {
       return text;
     }
-  }
+  }*/
 
   render() {
 

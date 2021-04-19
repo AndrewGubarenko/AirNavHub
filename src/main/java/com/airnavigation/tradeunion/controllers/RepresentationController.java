@@ -20,15 +20,15 @@ public class RepresentationController {
 
     private final RepresentationService service;
     private final UserServiceInterface userService;
-    private final Cryptographer cryptographer;
+    //private final Cryptographer cryptographer;
 
     @Autowired
     public RepresentationController(RepresentationService service,
-                                    UserServiceInterface userService,
-                                    Cryptographer cryptographer) {
+                                    UserServiceInterface userService/*,
+                                    Cryptographer cryptographer*/) {
         this.service = service;
         this.userService = userService;
-        this.cryptographer = cryptographer;
+        //this.cryptographer = cryptographer;
     }
 
     /**
@@ -51,6 +51,6 @@ public class RepresentationController {
 
     @PutMapping(path = "/password")
     public ResponseEntity<String> resetPassword(@RequestBody String email) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.resetPassword(cryptographer.decode(email)));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.resetPassword(email));
     }
 }
