@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.enterprise.inject.Produces;
 import javax.mail.MessagingException;
 import javax.persistence.NonUniqueResultException;
 import java.io.IOException;

@@ -42,15 +42,15 @@ class InitAdminAccess {
     @PostConstruct
     @Transactional
     protected void createDefaultUsers() {
-        Optional<User> userOpt = adminRepository.findByUsername("andrewgubarenko@gmail.com");
+        Optional<User> userOpt = adminRepository.findByUsername("***@gmail.com");
         if(userOpt.isPresent()) {
             return;
         } else {
             String password = passwordGenerator.generateTemporaryPassword(30);
             User user = adminRepository.save(
-                    User.builder().username("andrewgubarenko@gmail.com")
+                    User.builder().username("***@gmail.com")
                             .password(passwordEncoder.encode(password))
-                            .firstName("Андрій Сергійович")
+                            .firstName("Андрій")
                             .lastName("Губаренко")
                             .count(0.00)
                             .gender(Gender.MALE)

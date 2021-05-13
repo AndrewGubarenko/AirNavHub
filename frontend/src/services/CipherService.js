@@ -1,4 +1,3 @@
-/*
 let CryptoJS = require("crypto-js");
 const passwordPhrase = "yHZ724fk2E";
 
@@ -37,4 +36,3 @@ const passwordPhrase = "yHZ724fk2E";
   }
 
 export default AesUtil;
-*/

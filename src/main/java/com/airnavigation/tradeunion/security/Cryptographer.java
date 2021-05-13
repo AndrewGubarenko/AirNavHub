@@ -1,4 +1,3 @@
-/*
 package com.airnavigation.tradeunion.security;
 
 import org.apache.commons.codec.DecoderException;
@@ -167,4 +166,3 @@ public class Cryptographer {
         }
     }
 }
-*/

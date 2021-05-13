@@ -8,7 +8,7 @@ import com.airnavigation.tradeunion.domain.Questionnaire;
 import com.airnavigation.tradeunion.domain.Role;
 import com.airnavigation.tradeunion.domain.User;
 import com.airnavigation.tradeunion.exceptions.EmptyDataFieldsException;
-//import com.airnavigation.tradeunion.security.Cryptographer;
+import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.interfaces.UserServiceInterface;
 import com.airnavigation.tradeunion.utilities.EmailServiceImpl;
 import com.airnavigation.tradeunion.utilities.TemporaryPasswordGenerator;
@@ -34,21 +34,21 @@ public class UserService implements UserServiceInterface {
     private final TemporaryPasswordGenerator passwordGenerator;
     private final EmailServiceImpl emailService;
     private final PasswordEncoder passwordEncoder;
-    //private final Cryptographer cryptographer;
+    private final Cryptographer cryptographer;
 
     @Autowired
     public UserService (UserRepository userRepository,
                         QuestionnaireRepository questionnaireRepository,
                         TemporaryPasswordGenerator passwordGenerator,
                         EmailServiceImpl emailService,
-                        BCryptPasswordEncoder passwordEncoder/*,
-                        Cryptographer cryptographer*/) {
+                        BCryptPasswordEncoder passwordEncoder,
+                        Cryptographer cryptographer) {
         this.userRepository = userRepository;
         this.questionnaireRepository = questionnaireRepository;
         this.passwordGenerator = passwordGenerator;
         this.emailService = emailService;
         this.passwordEncoder = passwordEncoder;
-        //this.cryptographer = cryptographer;
+        this.cryptographer = cryptographer;
     }
 
     @Override
@@ -229,7 +229,7 @@ public class UserService implements UserServiceInterface {
             userQuestionnaire.setAdditionalInformation(questionnaire.getAdditionalInformation());
 
             if(userQuestionnaire.getChildren() != null) {
-                /*Map<String, String> decryptedChildren = new LinkedHashMap<>();
+                Map<String, String> decryptedChildren = new LinkedHashMap<>();
                 Map<String, String> decryptedIncomeChildren = new LinkedHashMap<>();
                 userQuestionnaire.getChildren().forEach((name, date) -> decryptedChildren.put(cryptographer.decode(name), cryptographer.decode(date)));
                 questionnaire.getChildren().forEach((name, date) -> decryptedIncomeChildren.put(cryptographer.decode(name), cryptographer.decode(date)));
@@ -239,8 +239,8 @@ public class UserService implements UserServiceInterface {
 
                 userQuestionnaire.getChildren().clear();
 
-                decryptedChildren.forEach((name, date) -> userQuestionnaire.getChildren().put(cryptographer.encode(name), cryptographer.encode(date)));*/
-                questionnaire.getChildren().forEach(userQuestionnaire.getChildren()::putIfAbsent);
+                decryptedChildren.forEach((name, date) -> userQuestionnaire.getChildren().put(cryptographer.encode(name), cryptographer.encode(date)));
+                //questionnaire.getChildren().forEach(userQuestionnaire.getChildren()::putIfAbsent);
             } else {
                 userQuestionnaire.setChildren(questionnaire.getChildren());
             }

@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {setToMainDisplayMode} from '../reducers/actions/OnMainPageAction';
 import {userService} from '../app-context/context';
 import {setSpinnerVisibility} from '../reducers/actions/spinnerAction';
-//import {cipherService} from '../app-context/context';
+import {cipherService} from '../app-context/context';
 
-/*let CryptoJS = require("crypto-js");*/
+let CryptoJS = require("crypto-js");
 let count = -1;
 
 class QuestionnaireContainer extends React.Component {
@@ -317,42 +317,42 @@ class QuestionnaireContainer extends React.Component {
         childrenMap.set(child[0], child[1]);
       });
 
-/*      await this.state.childNameMap.forEach((name,date) => {
+      await this.state.childNameMap.forEach((name,date) => {
         let encodedName = this.cipherThis(name);
         let encodedDate = this.cipherThis(this.state.childBirthMap.get(date))
         childrenMap.set(encodedName, encodedDate);
-      });*/
+      });
 
       //Making JS Map compatible for JSON.Stringify
       let childrenMapCompatible = Object.fromEntries(childrenMap);
 
       let questionnaire = {
-        nameUkrainian: this.state.nameUkrainian,
-        nameEnglish: this.state.nameEnglish,
-        facility: this.state.facility,
-        position: this.state.position,
-        shift: this.state.shift,
-        passportNumber: this.state.passportNumber,
-        passportIssue: this.state.passportIssue,
-        passportDateIssue: this.state.passportDateIssue,
-        doesHaveInternationalPassport: this.state.doesHaveInternationalPassport,
-        termInternationalPassport: this.state.termInternationalPassport,
-        identNumber: this.state.identNumber,
-        education: this.state.education,
-        educationTerm: this.state.educationTerm,
-        homePhone: this.state.homePhone,
-        mobilePhone: this.state.mobilePhone,
-        placeOfBirth: this.state.placeOfBirth,
-        birthDate: this.state.birthDate,
-        passportAddress: this.state.passportAddress,
-        actualAddress: this.state.actualAddress,
-        employmentDate: this.state.employmentDate,
-        seniority: this.state.seniority,
-        isMarried: this.state.isMarried,
-        familyComposition: this.state.familyComposition,
+        nameUkrainian: this.cipherThis(this.state.nameUkrainian),
+        nameEnglish: this.cipherThis(this.state.nameEnglish),
+        facility: this.cipherThis(this.state.facility),
+        position: this.cipherThis(this.state.position),
+        shift: this.cipherThis(this.state.shift),
+        passportNumber: this.cipherThis(this.state.passportNumber),
+        passportIssue: this.cipherThis(this.state.passportIssue),
+        passportDateIssue: this.cipherThis(this.state.passportDateIssue),
+        doesHaveInternationalPassport: this.cipherThis(this.state.doesHaveInternationalPassport),
+        termInternationalPassport: this.cipherThis(this.state.termInternationalPassport),
+        identNumber: this.cipherThis(this.state.identNumber),
+        education: this.cipherThis(this.state.education),
+        educationTerm: this.cipherThis(this.state.educationTerm),
+        homePhone: this.cipherThis(this.state.homePhone),
+        mobilePhone: this.cipherThis(this.state.mobilePhone),
+        placeOfBirth: this.cipherThis(this.state.placeOfBirth),
+        birthDate: this.cipherThis(this.state.birthDate),
+        passportAddress: this.cipherThis(this.state.passportAddress),
+        actualAddress: this.cipherThis(this.state.actualAddress),
+        employmentDate: this.cipherThis(this.state.employmentDate),
+        seniority: this.cipherThis(this.state.seniority),
+        isMarried: this.cipherThis(this.state.isMarried),
+        familyComposition: this.cipherThis(this.state.familyComposition),
         children: childrenMapCompatible,
-        additionalInformation: this.state.additionalInformation,
-        userId: this.props.user.id
+        additionalInformation: this.cipherThis(this.state.additionalInformation),
+        userId: this.cipherThis(this.props.user.id)
       }
       await userService.sendQuestionnaire(questionnaire, this.props.user.id).then(response => {
         if(response.ok) {
@@ -372,29 +372,29 @@ class QuestionnaireContainer extends React.Component {
   }
 
   setQuestionnarieData = (data) => {
-    this.setState({nameUkrainian: data.nameUkrainian});
-    this.setState({nameEnglish: data.nameEnglish});
-    this.setState({facility: data.facility});
-    this.setState({position: data.position});
-    this.setState({shift: data.shift});
-    this.setState({passportNumber: data.passportNumber});
-    this.setState({passportIssue: data.passportIssue});
-    this.setState({passportDateIssue: data.passportDateIssue});
-    this.setState({doesHaveInternationalPassport: data.doesHaveInternationalPassport});
-    this.setState({termInternationalPassport: data.termInternationalPassport});
-    this.setState({identNumber: data.identNumber});
-    this.setState({education: data.education});
-    this.setState({educationTerm: data.educationTerm});
-    this.setState({homePhone: data.homePhone});
-    this.setState({mobilePhone: data.mobilePhone});
-    this.setState({placeOfBirth: data.placeOfBirth});
-    this.setState({birthDate: data.birthDate});
-    this.setState({passportAddress: data.passportAddress});
-    this.setState({actualAddress: data.actualAddress});
-    this.setState({employmentDate: data.employmentDate});
-    this.setState({seniority: data.seniority});
-    this.setState({isMarried: data.isMarried});
-    this.setState({familyComposition: data.familyComposition});
+    this.setState({nameUkrainian: this.decipherThis(data.nameUkrainian)});
+    this.setState({nameEnglish: this.decipherThis(data.nameEnglish)});
+    this.setState({facility: this.decipherThis(data.facility)});
+    this.setState({position: this.decipherThis(data.position)});
+    this.setState({shift: this.decipherThis(data.shift)});
+    this.setState({passportNumber: this.decipherThis(data.passportNumber)});
+    this.setState({passportIssue: this.decipherThis(data.passportIssue)});
+    this.setState({passportDateIssue: this.decipherThis(data.passportDateIssue)});
+    this.setState({doesHaveInternationalPassport: this.decipherThis(data.doesHaveInternationalPassport)});
+    this.setState({termInternationalPassport: this.decipherThis(data.termInternationalPassport)});
+    this.setState({identNumber: this.decipherThis(data.identNumber)});
+    this.setState({education: this.decipherThis(data.education)});
+    this.setState({educationTerm: this.decipherThis(data.educationTerm)});
+    this.setState({homePhone: this.decipherThis(data.homePhone)});
+    this.setState({mobilePhone: this.decipherThis(data.mobilePhone)});
+    this.setState({placeOfBirth: this.decipherThis(data.placeOfBirth)});
+    this.setState({birthDate: this.decipherThis(data.birthDate)});
+    this.setState({passportAddress: this.decipherThis(data.passportAddress)});
+    this.setState({actualAddress: this.decipherThis(data.actualAddress)});
+    this.setState({employmentDate: this.decipherThis(data.employmentDate)});
+    this.setState({seniority: this.decipherThis(data.seniority)});
+    this.setState({isMarried: this.decipherThis(data.isMarried)});
+    this.setState({familyComposition: this.decipherThis(data.familyComposition)});
 
     let decodedMap = this.state.children;
     Object.entries(data.children).forEach(async(name, index) => {
@@ -402,14 +402,14 @@ class QuestionnaireContainer extends React.Component {
       let childName = name[0];
       let childDate = name[1];
 
-      decodedMap.push([childName, childDate]);
+      decodedMap.push([this.decipherThis(childName), this.decipherThis(childDate)]);
     });
     this.setState({children: decodedMap});
 
     this.setState({additionalInformation: data.additionalInformation});
   }
 
-/*  cipherThis = (text) => {
+  cipherThis = (text) => {
     let iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     let salt = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
     if(text) {
@@ -420,9 +420,9 @@ class QuestionnaireContainer extends React.Component {
     } else {
       return text;
     }
-  }*/
+  }
 
-/*  decipherThis = (encryptedText) => {
+  decipherThis = (encryptedText) => {
     if(encryptedText) {
       let decodedText = atob(encryptedText);
       let aesString = decodedText.split("::");
@@ -431,7 +431,7 @@ class QuestionnaireContainer extends React.Component {
     } else {
       return encryptedText;
     }
-  }*/
+  }
 
   render() {
     return(

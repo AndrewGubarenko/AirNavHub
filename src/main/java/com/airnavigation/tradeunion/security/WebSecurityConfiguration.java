@@ -95,6 +95,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                 .logoutUrl("/user/logout").permitAll()
+                .deleteCookies("JSESSIONID")
             .and()
                 .csrf().disable()
                 .cors().disable()

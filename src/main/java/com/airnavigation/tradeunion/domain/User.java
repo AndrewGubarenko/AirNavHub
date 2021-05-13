@@ -2,6 +2,7 @@ package com.airnavigation.tradeunion.domain;
 
 import lombok.*;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
