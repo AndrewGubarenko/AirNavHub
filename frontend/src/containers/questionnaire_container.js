@@ -324,35 +324,35 @@ class QuestionnaireContainer extends React.Component {
       });
 
       //Making JS Map compatible for JSON.Stringify
-      let childrenMapCompatible = Object.fromEntries(childrenMap);
+      let childrenMapCompatible = await Object.fromEntries(childrenMap);
 
       let questionnaire = {
-        nameUkrainian: this.cipherThis(this.state.nameUkrainian),
-        nameEnglish: this.cipherThis(this.state.nameEnglish),
-        facility: this.cipherThis(this.state.facility),
-        position: this.cipherThis(this.state.position),
-        shift: this.cipherThis(this.state.shift),
-        passportNumber: this.cipherThis(this.state.passportNumber),
-        passportIssue: this.cipherThis(this.state.passportIssue),
-        passportDateIssue: this.cipherThis(this.state.passportDateIssue),
-        doesHaveInternationalPassport: this.cipherThis(this.state.doesHaveInternationalPassport),
-        termInternationalPassport: this.cipherThis(this.state.termInternationalPassport),
-        identNumber: this.cipherThis(this.state.identNumber),
-        education: this.cipherThis(this.state.education),
-        educationTerm: this.cipherThis(this.state.educationTerm),
-        homePhone: this.cipherThis(this.state.homePhone),
-        mobilePhone: this.cipherThis(this.state.mobilePhone),
-        placeOfBirth: this.cipherThis(this.state.placeOfBirth),
-        birthDate: this.cipherThis(this.state.birthDate),
-        passportAddress: this.cipherThis(this.state.passportAddress),
-        actualAddress: this.cipherThis(this.state.actualAddress),
-        employmentDate: this.cipherThis(this.state.employmentDate),
-        seniority: this.cipherThis(this.state.seniority),
-        isMarried: this.cipherThis(this.state.isMarried),
-        familyComposition: this.cipherThis(this.state.familyComposition),
+        nameUkrainian: await this.cipherThis(this.state.nameUkrainian),
+        nameEnglish: await this.cipherThis(this.state.nameEnglish),
+        facility: await this.cipherThis(this.state.facility),
+        position: await this.cipherThis(this.state.position),
+        shift: await this.cipherThis(this.state.shift),
+        passportNumber: await this.cipherThis(this.state.passportNumber),
+        passportIssue: await this.cipherThis(this.state.passportIssue),
+        passportDateIssue: await this.cipherThis(this.state.passportDateIssue),
+        doesHaveInternationalPassport: await this.cipherThis(this.state.doesHaveInternationalPassport),
+        termInternationalPassport: await this.cipherThis(this.state.termInternationalPassport),
+        identNumber: await this.cipherThis(this.state.identNumber),
+        education: await this.cipherThis(this.state.education),
+        educationTerm: await this.cipherThis(this.state.educationTerm),
+        homePhone: await this.cipherThis(this.state.homePhone),
+        mobilePhone: await this.cipherThis(this.state.mobilePhone),
+        placeOfBirth: await this.cipherThis(this.state.placeOfBirth),
+        birthDate: await this.cipherThis(this.state.birthDate),
+        passportAddress: await this.cipherThis(this.state.passportAddress),
+        actualAddress: await this.cipherThis(this.state.actualAddress),
+        employmentDate: await this.cipherThis(this.state.employmentDate),
+        seniority: await this.cipherThis(this.state.seniority),
+        isMarried: await this.cipherThis(this.state.isMarried),
+        familyComposition: await this.cipherThis(this.state.familyComposition),
         children: childrenMapCompatible,
-        additionalInformation: this.cipherThis(this.state.additionalInformation),
-        userId: this.cipherThis(this.props.user.id)
+        additionalInformation: await this.cipherThis(this.state.additionalInformation),
+        userId: await this.cipherThis(this.props.user.id)
       }
       await userService.sendQuestionnaire(questionnaire, this.props.user.id).then(response => {
         if(response.ok) {
@@ -371,42 +371,42 @@ class QuestionnaireContainer extends React.Component {
     }
   }
 
-  setQuestionnarieData = (data) => {
-    this.setState({nameUkrainian: this.decipherThis(data.nameUkrainian)});
-    this.setState({nameEnglish: this.decipherThis(data.nameEnglish)});
-    this.setState({facility: this.decipherThis(data.facility)});
-    this.setState({position: this.decipherThis(data.position)});
-    this.setState({shift: this.decipherThis(data.shift)});
-    this.setState({passportNumber: this.decipherThis(data.passportNumber)});
-    this.setState({passportIssue: this.decipherThis(data.passportIssue)});
-    this.setState({passportDateIssue: this.decipherThis(data.passportDateIssue)});
-    this.setState({doesHaveInternationalPassport: this.decipherThis(data.doesHaveInternationalPassport)});
-    this.setState({termInternationalPassport: this.decipherThis(data.termInternationalPassport)});
-    this.setState({identNumber: this.decipherThis(data.identNumber)});
-    this.setState({education: this.decipherThis(data.education)});
-    this.setState({educationTerm: this.decipherThis(data.educationTerm)});
-    this.setState({homePhone: this.decipherThis(data.homePhone)});
-    this.setState({mobilePhone: this.decipherThis(data.mobilePhone)});
-    this.setState({placeOfBirth: this.decipherThis(data.placeOfBirth)});
-    this.setState({birthDate: this.decipherThis(data.birthDate)});
-    this.setState({passportAddress: this.decipherThis(data.passportAddress)});
-    this.setState({actualAddress: this.decipherThis(data.actualAddress)});
-    this.setState({employmentDate: this.decipherThis(data.employmentDate)});
-    this.setState({seniority: this.decipherThis(data.seniority)});
-    this.setState({isMarried: this.decipherThis(data.isMarried)});
-    this.setState({familyComposition: this.decipherThis(data.familyComposition)});
+  setQuestionnarieData = async (data) => {
+    this.setState({nameUkrainian: await this.decipherThis(data.nameUkrainian)});
+    this.setState({nameEnglish: await this.decipherThis(data.nameEnglish)});
+    this.setState({facility: await this.decipherThis(data.facility)});
+    this.setState({position: await this.decipherThis(data.position)});
+    this.setState({shift: await this.decipherThis(data.shift)});
+    this.setState({passportNumber: await this.decipherThis(data.passportNumber)});
+    this.setState({passportIssue: await this.decipherThis(data.passportIssue)});
+    this.setState({passportDateIssue: await this.decipherThis(data.passportDateIssue)});
+    this.setState({doesHaveInternationalPassport: await this.decipherThis(data.doesHaveInternationalPassport)});
+    this.setState({termInternationalPassport: await this.decipherThis(data.termInternationalPassport)});
+    this.setState({identNumber: await this.decipherThis(data.identNumber)});
+    this.setState({education: await this.decipherThis(data.education)});
+    this.setState({educationTerm: await this.decipherThis(data.educationTerm)});
+    this.setState({homePhone: await this.decipherThis(data.homePhone)});
+    this.setState({mobilePhone: await this.decipherThis(data.mobilePhone)});
+    this.setState({placeOfBirth: await this.decipherThis(data.placeOfBirth)});
+    this.setState({birthDate: await this.decipherThis(data.birthDate)});
+    this.setState({passportAddress: await this.decipherThis(data.passportAddress)});
+    this.setState({actualAddress: await this.decipherThis(data.actualAddress)});
+    this.setState({employmentDate: await this.decipherThis(data.employmentDate)});
+    this.setState({seniority: await this.decipherThis(data.seniority)});
+    this.setState({isMarried: await this.decipherThis(data.isMarried)});
+    this.setState({familyComposition: await this.decipherThis(data.familyComposition)});
 
     let decodedMap = this.state.children;
-    Object.entries(data.children).forEach(async(name, index) => {
+    await Object.entries(data.children).forEach((name, index) => {
 
       let childName = name[0];
       let childDate = name[1];
 
       decodedMap.push([this.decipherThis(childName), this.decipherThis(childDate)]);
     });
-    this.setState({children: decodedMap});
+    await this.setState({children: decodedMap});
 
-    this.setState({additionalInformation: data.additionalInformation});
+    await this.setState({additionalInformation: data.additionalInformation});
   }
 
   cipherThis = (text) => {
