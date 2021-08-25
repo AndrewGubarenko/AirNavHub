@@ -4,7 +4,6 @@ import com.airnavigation.tradeunion.domain.PlainDomain.ChangePassword;
 import com.airnavigation.tradeunion.domain.PlainDomain.Feedback;
 import com.airnavigation.tradeunion.domain.Questionnaire;
 import com.airnavigation.tradeunion.domain.User;
-//import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
