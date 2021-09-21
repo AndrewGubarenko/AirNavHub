@@ -809,7 +809,17 @@ class AdminPageContainer extends React.Component {
       terminalData = (
           <div>
               {
-                list.sort().map(item => {
+                list.sort(function sortFunction(a, b){
+                  let aStr = JSON.stringify(a);
+                  let bStr = JSON.stringify(b);
+                  if(aStr.indexOf("INFO") !== -1 && bStr.indexOf("WARN") !== -1) {
+                    return -1;
+                  } else if(aStr.indexOf("WARN") !== -1 && bStr.indexOf("INFO") !== -1) {
+                    return 1;
+                  } else {
+                    return 0;
+                  }
+                }).map(item => {
                   let log = JSON.stringify(item);
                   let color;
                   if (log.indexOf("INFO") !== -1) {
