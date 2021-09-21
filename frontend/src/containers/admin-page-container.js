@@ -801,7 +801,7 @@ class AdminPageContainer extends React.Component {
     this.setState({terminalData: terminalData});
   }
 
-  createLogsListForPrint = (list) => {
+  createLogsListForPrint = async (list) => {
 
     let terminalData;
     if (Array.isArray(list) && list.length) {
@@ -809,7 +809,7 @@ class AdminPageContainer extends React.Component {
       terminalData = (
           <div>
               {
-                list.sort(function sortFunction(a, b){
+                list.sort(await function sortFunction(a, b){
                   let aStr = JSON.stringify(a);
                   let bStr = JSON.stringify(b);
                   if(aStr.indexOf("INFO") !== -1 && bStr.indexOf("WARN") !== -1) {
