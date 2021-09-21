@@ -802,13 +802,14 @@ class AdminPageContainer extends React.Component {
   }
 
   createLogsListForPrint = (list) => {
+
     let terminalData;
     if (Array.isArray(list) && list.length) {
       let count = 0;
       terminalData = (
           <div>
               {
-                list.map(item => {
+                list.sort().map(item => {
                   let log = JSON.stringify(item);
                   let color;
                   if (log.indexOf("INFO") !== -1) {

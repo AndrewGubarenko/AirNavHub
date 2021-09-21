@@ -12,7 +12,7 @@
 
 	<groupId>com.airnavigation.tradeunion</groupId>
 	<artifactId>airnavigation</artifactId>
-	<version>1.0.0-RELEASE</version>
+	<version>1.0.1-RELEASE</version>
 	<packaging>war</packaging>
 	<name>airnavigation tradeunion web resource</name>
 	<description>Project of web resource for airnavigation trade union</description>
@@ -130,7 +130,7 @@
 		<dependency>
 			<groupId>com.github.eirslett</groupId>
 			<artifactId>frontend-maven-plugin</artifactId>
-			<version>1.6</version>
+			<version>1.12.0</version>
 		</dependency>
 
 	</dependencies>
@@ -158,7 +158,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.12.0</version>
 				<configuration>
 					<workingDirectory>frontend</workingDirectory>
 					<installDirectory>target</installDirectory>
