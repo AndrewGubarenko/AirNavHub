@@ -179,7 +179,17 @@ class AdminPageContainer extends React.Component {
                       terminalData: ""
                     });
   }
-
+  sortFunction = (a, b) => {
+    let aStr = JSON.stringify(a);
+    let bStr = JSON.stringify(b);
+    if(aStr.indexOf("INFO") !== -1 && bStr.indexOf("WARN") !== -1) {
+      return -1;
+    } else if(aStr.indexOf("WARN") !== -1 && bStr.indexOf("INFO") !== -1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 /*User functions*/
   onChangeUserUsername = (event) => {
     this.setState({borderColorUsername: "darkgrey"});
@@ -809,17 +819,7 @@ class AdminPageContainer extends React.Component {
       terminalData = (
           <div>
               {
-                list.sort(/*function sortFunction(a, b){
-                  let aStr = JSON.stringify(a);
-                  let bStr = JSON.stringify(b);
-                  if(aStr.indexOf("INFO") !== -1 && bStr.indexOf("WARN") !== -1) {
-                    return -1;
-                  } else if(aStr.indexOf("WARN") !== -1 && bStr.indexOf("INFO") !== -1) {
-                    return 1;
-                  } else {
-                    return 0;
-                  }
-                }*/).map(item => {
+                list.sort(this.sortFunction).map(item => {
                   let log = JSON.stringify(item);
                   let color;
                   if (log.indexOf("INFO") !== -1) {
@@ -950,7 +950,7 @@ class AdminPageContainer extends React.Component {
       if(response.ok) {
         let count = 0;
         return response.json().then(array => {
-        return array.map(item => {
+        return array.sort(this.sortFunction).map(item => {
           let color;
           if (item.indexOf("INFO") !== -1) {
             color = "green";
