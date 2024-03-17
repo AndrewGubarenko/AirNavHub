@@ -1,2 +1,1 @@
-airnavigation.tradeunion
-Project of WebSite for trade union of air traffic controllers, AirNavigation
+AirNavHub is a project of web portal for trade union of air traffic controllers - AirNavigation
