@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     @ResponseBody
-    public ResponseEntity<User> getUser (@PathVariable UUID id) {
+    public ResponseEntity<User> getUser (@PathVariable Long id) {
         User response = userService.getUser(id);
         /*String username = cryptographer.encode(response.getUsername());
         response.setUsername(username);*/
@@ -43,7 +43,7 @@ public class UserController {
 
     @PutMapping(path = "/{id}/password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePassword changePassword,
-                                                 @PathVariable UUID id) {
+                                                 @PathVariable Long id) {
 /*        ChangePassword decodedChangePassword = new ChangePassword();
         decodedChangePassword.setCurrentPassword(cryptographer.decode(changePassword.getCurrentPassword()));
         decodedChangePassword.setNewPassword(cryptographer.decode(changePassword.getNewPassword()));*/
@@ -66,12 +66,12 @@ public class UserController {
      */
     @PostMapping(path = "/{id}/questionnaire", consumes = "application/json")
     public ResponseEntity<Questionnaire> saveQuestionnaire (@RequestBody Questionnaire questionnaire,
-                                                            @PathVariable UUID id) {
+                                                            @PathVariable Long id) {
         Questionnaire result = userService.saveQuestionnaire(id, questionnaire);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     @GetMapping(path = "/{id}/questionnaire")
-    public ResponseEntity<Questionnaire> getQuestionnaire (@PathVariable UUID id) {
+    public ResponseEntity<Questionnaire> getQuestionnaire (@PathVariable Long id) {
         Questionnaire result = userService.getQuestionnaire(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

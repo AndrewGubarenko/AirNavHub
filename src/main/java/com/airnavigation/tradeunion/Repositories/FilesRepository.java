@@ -10,6 +10,6 @@ import java.util.UUID;
  * @author Andrii Hubarenko
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for operations with File objects
  */
-public interface FilesRepository extends CrudRepository<File, UUID> {
+public interface FilesRepository extends CrudRepository<File, Long> {
     ArrayList<File> findAll();
 }

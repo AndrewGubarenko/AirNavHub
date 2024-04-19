@@ -22,7 +22,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private UUID id;
+    private Long id;
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;
@@ -57,7 +57,7 @@ public class Category {
         if (this == o) return true;
         if (!(o instanceof Category)) return false;
         Category category = (Category) o;
-        return id == category.id &&
+        return Objects.equals(id, category.id) &&
                 name.equals(category.name);
     }
 

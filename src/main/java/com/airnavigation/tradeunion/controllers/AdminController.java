@@ -5,7 +5,6 @@ import com.airnavigation.tradeunion.domain.File;
 import com.airnavigation.tradeunion.domain.News;
 import com.airnavigation.tradeunion.domain.PlainDomain.SearchRequest;
 import com.airnavigation.tradeunion.domain.User;
-//import com.airnavigation.tradeunion.security.Cryptographer;
 import com.airnavigation.tradeunion.services.FileService;
 import com.airnavigation.tradeunion.services.NewsService;
 import com.airnavigation.tradeunion.services.interfaces.AdminServiceInterface;
@@ -15,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Andrii Hubarenko
@@ -126,7 +128,7 @@ public class AdminController {
 
     @PutMapping(path = "/user/{id}")
     @SuppressWarnings("Duplicates")
-    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         /*String decodedUsername = cryptographer.decode(user.getUsername());
         user.setUsername(decodedUsername);*/
         User response = adminService.updateUser(id, user);
@@ -137,7 +139,7 @@ public class AdminController {
     }
 
     @DeleteMapping(path = "/user/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         String response = adminService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -159,19 +161,19 @@ public class AdminController {
     }
 
     @GetMapping(path = "/file/{id}")
-    public ResponseEntity<File> getSingleFile(@PathVariable UUID id) {
+    public ResponseEntity<File> getSingleFile(@PathVariable Long id) {
         File response = fileService.getSingleFile(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping(path = "/file/{id}")
-    public ResponseEntity<File> updateFile(@RequestBody File file, @PathVariable UUID id) {
+    public ResponseEntity<File> updateFile(@RequestBody File file, @PathVariable Long id) {
         File response = fileService.changeFile(file, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping(path = "/file/{id}")
-    public ResponseEntity<String> deleteFile(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteFile(@PathVariable Long id) {
         String response = fileService.deleteFile(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -187,7 +189,7 @@ public class AdminController {
     }
 
     @PutMapping(path = "/category/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable UUID id, @RequestBody String categoryName) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody String categoryName) {
         Category response = fileService.updateCategoryName(categoryName, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -221,19 +223,19 @@ public class AdminController {
     }
 
     @GetMapping(path = "/news/{id}")
-    public ResponseEntity<News> getSingleNews(@PathVariable UUID id) {
+    public ResponseEntity<News> getSingleNews(@PathVariable Long id) {
         News response = newsService.getSingleNews(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping(path = "/news/{id}")
-    public ResponseEntity<News> updateNews(@RequestBody News news, @PathVariable UUID id) {
+    public ResponseEntity<News> updateNews(@RequestBody News news, @PathVariable Long id) {
         News response = newsService.changeNews(news, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping(path = "/news/{id}")
-    public ResponseEntity<String> deleteNews(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteNews(@PathVariable Long id) {
         String response = newsService.deleteNews(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

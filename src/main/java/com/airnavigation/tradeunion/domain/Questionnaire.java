@@ -25,7 +25,7 @@ public class Questionnaire {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    UUID id;
+    Long id;
     @Column(name = "name_ukrainian")
     String nameUkrainian;
     @Column(name = "name_english")
@@ -114,7 +114,7 @@ public class Questionnaire {
         if (this == o) return true;
         if (!(o instanceof Questionnaire)) return false;
         Questionnaire that = (Questionnaire) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(nameUkrainian, that.nameUkrainian) &&
                 Objects.equals(nameEnglish, that.nameEnglish) &&
                 Objects.equals(facility, that.facility) &&

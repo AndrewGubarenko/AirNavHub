@@ -13,7 +13,7 @@ import java.util.UUID;
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for operations with categories in data base
  */
 @Repository
-public interface CategoryRepository extends CrudRepository<Category, UUID> {
+public interface CategoryRepository extends CrudRepository<Category, Long> {
     Optional<Category> findByName(String name);
     ArrayList<Category> findAll();
 }

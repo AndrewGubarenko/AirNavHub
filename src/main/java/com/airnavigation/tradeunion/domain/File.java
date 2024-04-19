@@ -19,7 +19,7 @@ public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    UUID id;
+    Long id;
 
     @Column(name = "NAME", nullable = false)
     String name;
@@ -63,7 +63,7 @@ public class File {
         if (this == o) return true;
         if (!(o instanceof File)) return false;
         File file = (File) o;
-        return id == file.id &&
+        return Objects.equals(id, file.id) &&
                 name.equals(file.name) &&
                 path.equals(file.path);
     }

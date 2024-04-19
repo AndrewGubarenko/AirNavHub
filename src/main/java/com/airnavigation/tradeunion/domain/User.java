@@ -2,7 +2,6 @@ package com.airnavigation.tradeunion.domain;
 
 import lombok.*;
 
-import javax.enterprise.inject.Produces;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -26,7 +25,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @NonNull
     @Column(name = "username", unique = true, nullable = false)
@@ -83,7 +82,7 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.id &&
+        return Objects.equals(id, user.id) &&
                 username.equals(user.username) &&
                 gender.equals(user.gender) &&
                 roles.equals(user.roles);

@@ -41,12 +41,10 @@ class InitAdminAccess {
 
     @PostConstruct
     @Transactional
-    protected void createDefaultUsers() {
+    public void createDefaultUsers() {
         Optional<User> userOpt = adminRepository.findByUsername("andrewgubarenko@gmail.com");
-        if(userOpt.isPresent()) {
-            return;
-        } else {
-            String password = passwordGenerator.generateTemporaryPassword(30);
+        if(!userOpt.isPresent()) {
+            String password = "123" /*passwordGenerator.generateTemporaryPassword(30)*/;
             User user = adminRepository.save(
                     User.builder().username("andrewgubarenko@gmail.com")
                             .password(passwordEncoder.encode(password))
@@ -57,7 +55,7 @@ class InitAdminAccess {
                             .roles(new HashSet<>(Arrays.asList(Role.ADMINISTRATOR, Role.USER)))
                             .build()
             );
-            try {
+            /*try {
                 emailService.sendMimeMessage(user.getUsername(),
                         "Реєстрація користувача",
                         "andrewgubarenko@gmail.com",
@@ -77,7 +75,7 @@ class InitAdminAccess {
                         new ArrayList<>());
             } catch (MessagingException ex) {
                 LOGGER.info("Something wrong with email. Unable to send an email to " + user.getUsername() + "\n" + ex.getLocalizedMessage());
-            }
+            }*/
             LOGGER.info("METHOD CREATE: User with username: " + user.getUsername() + " and access level:" + Role.ADMINISTRATOR.name() + " was created");
         }
     }

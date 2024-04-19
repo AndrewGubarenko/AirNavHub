@@ -11,30 +11,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-/**
- * @author Andrii Hubarenko
- * Controller for Main Page
- */
 @RestController
 public class RepresentationController {
 
     private final RepresentationService service;
     private final UserServiceInterface userService;
-    //private final Cryptographer cryptographer;
 
     @Autowired
     public RepresentationController(RepresentationService service,
-                                    UserServiceInterface userService/*,
-                                    Cryptographer cryptographer*/) {
+                                    UserServiceInterface userService) {
         this.service = service;
         this.userService = userService;
-        //this.cryptographer = cryptographer;
     }
-
-    /**
-     * SSL checking
-     * @return String key
-     */
 
     @GetMapping(path = "/main")
     public ResponseEntity<RepresentationContainer> getRepresentation() {
@@ -43,7 +31,7 @@ public class RepresentationController {
     }
 
     @GetMapping(path = "/full_main/{id}")
-    public ResponseEntity<RepresentationContainer> getRepresentation(@PathVariable UUID id) {
+    public ResponseEntity<RepresentationContainer> getRepresentation(@PathVariable Long id) {
         RepresentationContainer result = service.createRestrictRepresentation(id);
         result.getAuthorizedUser().setPassword("");
         return ResponseEntity.status(HttpStatus.OK).body(result);

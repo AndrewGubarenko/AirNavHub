@@ -12,7 +12,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 @PreAuthorize("isAuthenticated()")
@@ -40,7 +43,7 @@ public class FileService {
     }
 
     @Transactional
-    public File getSingleFile(UUID id) {
+    public File getSingleFile(Long id) {
         Optional<File> foundFileOpt = filesRepository.findById(id);
         if (foundFileOpt.isPresent()) {
             return foundFileOpt.get();
@@ -56,7 +59,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public File changeFile(File updatedFile, UUID id) {
+    public File changeFile(File updatedFile, Long id) {
         Optional<File> fileForUpdateOpt = filesRepository.findById(id);
         if (fileForUpdateOpt.isPresent()) {
             File fileForUpdate = fileForUpdateOpt.get();
@@ -78,7 +81,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public String deleteFile(UUID id) {
+    public String deleteFile(Long id) {
         Optional<File> fileForRemoveOpt = filesRepository.findById(id);
         if(fileForRemoveOpt.isPresent()) {
             File fileForRemove = fileForRemoveOpt.get();
@@ -91,7 +94,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    Category createCategoryOrReturnActual(String categoryName, String subCategory) {
+    public Category createCategoryOrReturnActual(String categoryName, String subCategory) {
         Optional<Category> categoryOpt = categoryRepository.findByName(categoryName.trim().toUpperCase());
         if(categoryOpt.isPresent()) {
             Category result = categoryOpt.get();
@@ -119,7 +122,7 @@ public class FileService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public Category updateCategoryName(String newCatName, UUID id) {
+    public Category updateCategoryName(String newCatName, Long id) {
         if(newCatName == null
                 || newCatName.substring(1, newCatName.length() - 1).trim().isEmpty()) {
             LOGGER.warn("METHOD UPDATE_CATEGORY: The category name field is empty!");

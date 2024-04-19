@@ -19,7 +19,7 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    UUID id;
+    Long id;
 
     @Column(name = "TITLE")
     String title;
@@ -32,7 +32,7 @@ public class News {
         if (this == o) return true;
         if (!(o instanceof News)) return false;
         News news = (News) o;
-        return id == news.id &&
+        return Objects.equals(id, news.id) &&
                 title.equals(news.title) &&
                 text.equals(news.text);
     }

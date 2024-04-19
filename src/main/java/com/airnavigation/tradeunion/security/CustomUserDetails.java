@@ -16,5 +16,5 @@ public class CustomUserDetails extends User {
         super(username, password, authorities);
     }
 
-    private UUID id;
+    private Long id;
 }

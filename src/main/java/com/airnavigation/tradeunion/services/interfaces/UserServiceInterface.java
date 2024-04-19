@@ -19,14 +19,14 @@ public interface UserServiceInterface {
      * @param id id of user, who is going to change his password
      * @return String message with a status of operation
      */
-    String changePassword(ChangePassword changePassword, UUID id);
+    String changePassword(ChangePassword changePassword, Long id);
 
     /**
      * Method for extraction of user by it`s Id
      * @param id id of user, that should be retrieved
      * @return extracted user or throw exception
      */
-    User getUser (UUID id);
+    User getUser (Long id);
 
     /**
      * Method that allow to reset the forgotten password for user.
@@ -48,12 +48,12 @@ public interface UserServiceInterface {
      * @param questionnaire a questionnaire object
      * @return saved questionnaire
      */
-    Questionnaire saveQuestionnaire(UUID id, Questionnaire questionnaire);
+    Questionnaire saveQuestionnaire(Long id, Questionnaire questionnaire);
 
     /**
      * method for getting user's questionnaire
      * @param id id of questionnaire`s owner
      * @return retrieved questionnaire
      */
-    Questionnaire getQuestionnaire(UUID id);
+    Questionnaire getQuestionnaire(Long id);
 }

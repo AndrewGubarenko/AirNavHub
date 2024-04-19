@@ -10,7 +10,7 @@ import java.util.UUID;
  * @author Andrii Hubarenko
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for operations with News objects
  */
-public interface NewsRepository extends CrudRepository<News, UUID> {
+public interface NewsRepository extends CrudRepository<News, Long> {
     /**
      * Method for retrieving of all news
      * @return

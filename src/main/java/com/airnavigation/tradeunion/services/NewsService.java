@@ -39,7 +39,7 @@ public class NewsService {
     }
 
     @Transactional
-    public News getSingleNews(UUID id) {
+    public News getSingleNews(Long id) {
         Optional<News> foundNewsOpt = newsRepository.findById(id);
         if(foundNewsOpt.isPresent()) {
             return foundNewsOpt.get();
@@ -51,7 +51,7 @@ public class NewsService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public News changeNews(News updatedNews, UUID id) {
+    public News changeNews(News updatedNews, Long id) {
         Optional<News> newsForUpdateOpt = newsRepository.findById(id);
         if (newsForUpdateOpt.isPresent()) {
             News newsForUpdate = newsForUpdateOpt.get();
@@ -71,7 +71,7 @@ public class NewsService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public String deleteNews(UUID id) {
+    public String deleteNews(Long id) {
         newsRepository.deleteById(id);
         return "Новина успішно видалена";
     }

@@ -23,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.enterprise.inject.Produces;
 import javax.mail.MessagingException;
 import javax.persistence.NonUniqueResultException;
 import java.io.IOException;
@@ -200,7 +199,7 @@ public class AdminService implements AdminServiceInterface {
 
     @Override
     @Transactional
-    public User getUser(UUID id) {
+    public User getUser(Long id) {
         Optional<User> foundUserOpt = adminRepository.findById(id);
         if(!foundUserOpt.isPresent()) {
             LOGGER.warn("METHOD GET: User with id=" + id + " has been not found!");
@@ -217,7 +216,7 @@ public class AdminService implements AdminServiceInterface {
 
     @Override
     @Transactional
-    public User updateUser(UUID id, User updatedUser) {
+    public User updateUser(Long id, User updatedUser) {
         if(!id.equals(updatedUser.getId())) {
             LOGGER.warn("METHOD UPDATE: Unauthorized access attemption! HTTP request was changed! The id in path variable and user id does not match!");
             throw new IllegalAccessAttemtException("Спроба незаконного доступу до даних!");
@@ -307,7 +306,7 @@ public class AdminService implements AdminServiceInterface {
 
     @Override
     @Transactional
-    public String deleteUser(UUID id) {
+    public String deleteUser(Long id) {
         Optional<User> userForDeleteOpt = adminRepository.findById(id);
         StringBuilder response = new StringBuilder();
         if(!userForDeleteOpt.isPresent()) {

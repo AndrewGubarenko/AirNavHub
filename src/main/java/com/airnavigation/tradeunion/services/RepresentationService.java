@@ -41,7 +41,7 @@ public class RepresentationService {
 
     @Transactional
     @PreAuthorize("isAuthenticated()")
-    public RepresentationContainer createRestrictRepresentation (UUID id) {
+    public RepresentationContainer createRestrictRepresentation (Long id) {
         RepresentationContainer representation = new RepresentationContainer();
         User authenticatedUser = userService.getUser(id);
         List<News> newsList = newsService.getListOfNews();

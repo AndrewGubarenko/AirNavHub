@@ -12,6 +12,6 @@ import java.util.UUID;
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for ordinary functions.
  */
 @Repository
-public interface UserRepository extends CrudRepository<User, UUID> {
+public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByUsername(String username);
 }

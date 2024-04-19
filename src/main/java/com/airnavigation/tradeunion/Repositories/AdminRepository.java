@@ -13,7 +13,7 @@ import java.util.UUID;
  * The repository interface that extends the CrudRepository of Spring JPA. Is useing for administrative functions
  */
 @Repository
-public interface AdminRepository extends CrudRepository<User, UUID> {
+public interface AdminRepository extends CrudRepository<User, Long> {
     /**
      * Method for retrieving of user by it`s first name and last name
      * @param firstName user`s first name
